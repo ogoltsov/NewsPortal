@@ -87,30 +87,27 @@ public class NewsActions extends DispatchAction {
     public ActionForward addViewNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                      HttpServletResponse response) throws Exception {
         NewsForm newsForm = (NewsForm) form;
-
         News news = new News();
         news.setDate(LocalDate.now());
-//        newsForm.reset(mapping, request);
         newsForm.setNews(news);
-//        form = newsForm;
         return mapping.findForward("showAddNews");
 
     }
 
     public ActionForward addNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
-        NewsForm newsFormo = (NewsForm) form;
+        NewsForm newsForm = (NewsForm) form;
         News news = new News();
-        news.setTitle(newsFormo.getTitle());
-        news.setBrief(newsFormo.getBrief());
-        news.setContent(newsFormo.getContent());
-        news.setDate(LocalDate.parse(newsFormo.getDate(),
+        news.setTitle(newsForm.getTitle());
+        news.setBrief(newsForm.getBrief());
+        news.setContent(newsForm.getContent());
+        news.setDate(LocalDate.parse(newsForm.getDate(),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         News newNews;
         try (IService<News> service = new NewsService()) {
             newNews = service.insert(news);
         }
-        newsFormo.setNews(newNews);
+        newsForm.setNews(newNews);
         return mapping.findForward("showViewNews");
     }
 

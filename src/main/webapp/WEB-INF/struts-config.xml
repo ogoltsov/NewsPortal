@@ -18,7 +18,8 @@
         <action path="/news" type="com.epam.ogoltsov.action.NewsActions"
                 parameter="method"
                 name="newsForm">
-            <forward name="listNews" path="/pages/listNews.jsp" redirect="true"/>
+            <!--<forward name="listNews" path="/pages/listNews.jsp" redirect="true"/>-->
+            <forward name="listNews" path="listNewsPage" redirect="true"/>
             <forward name="showViewNews" path="/pages/viewNews.jsp"/>
             <forward name="showEditNews" path="/pages/editNews.jsp"/>
             <forward name="deleteNews" path="/app/news?method=listNews" redirect="true" />
@@ -39,5 +40,9 @@
     </action-mappings>
 
     <message-resources parameter="Common"/>
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config"
+                      value="/WEB-INF/tiles-defs.xml"/>
+    </plug-in>
 
 </struts-config>
