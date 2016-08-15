@@ -19,7 +19,6 @@
             </tr>
             </thead>
             <tbody>
-
             <logic:iterate name="newsForm" property="newsList" id="news">
                 <tr>
                     <td>
@@ -59,11 +58,10 @@
             </tr>
             </tbody>
         </table>
-
     </html:form>
-
 
     <html:link page="/app/Locale?method=russian">Russian</html:link>
     <html:link page="/app/Locale?method=english">English</html:link>
+
 </div>
 
