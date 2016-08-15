@@ -18,15 +18,15 @@
         <action path="/news" type="com.epam.ogoltsov.action.NewsActions"
                 parameter="method"
                 name="newsForm">
-            <forward name="listNews" path="/pages/listNews.jsp"/>
+            <forward name="listNews" path="/pages/listNews.jsp" redirect="true"/>
             <forward name="showViewNews" path="/pages/viewNews.jsp"/>
             <forward name="showEditNews" path="/pages/editNews.jsp"/>
+            <forward name="deleteNews" path="/app/news?method=listNews" redirect="true" />
 
             <!--<forward name="showAddNews" path="showAddNews" />-->
             <!--<forward name="addNews" path="/news.do?method=listNews" redirect="true" />-->
             <!--<forward name="viewNews" path="viewNews" />-->
             <!--<forward name="editNews" path="editNews" />-->
-            <!--<forward name="deleteNews" path="/news.do?method=listNews" redirect="true" />-->
         </action>
 
         <action

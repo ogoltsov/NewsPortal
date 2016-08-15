@@ -14,7 +14,10 @@
 <p>date: <bean:write name="newsItem" property="date" /></p>
 <p>content: <bean:write name="newsItem" property="content" /></p>
 
-<html:link action="/news?methot=delete&id=${newsItem.id}">Delete</html:link>
+<html:link action="/news?method=delete">
+    Delete
+    <html:param name="itemsToDelete" value="${newsItem.id}"/>
+</html:link>
 <html:link action="/news?method=listNews">Back</html:link>
 <html:link action="/news?method=showEditNews&id=${newsItem.id}">Edit</html:link>
 

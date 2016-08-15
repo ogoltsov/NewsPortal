@@ -16,65 +16,67 @@
 <h1>Welcome, Mr. K!</h1>
 <h3><bean:message key="news.list.title"/></h3>
 <div class="news">
+<html:form action="/news?method=delete">
     <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>title</th>
-            <th>brief</th>
-            <th>date</th>
-            <th>content</th>
-            <th>action</th>
-            <th>#</th>
-        </tr>
-        </thead>
-        <tbody>
+    <thead>
+    <tr>
+    <th>id</th>
+    <th>title</th>
+    <th>brief</th>
+    <th>date</th>
+    <th>content</th>
+    <th>action</th>
+    <th>#</th>
+    </tr>
+    </thead>
+    <tbody>
 
-        <logic:iterate name="newsForm" property="newsList" id="news">
-            <tr>
-                <td>
-                    <bean:write name="news" property="id"/>
-                </td>
-                <td>
-                    <bean:write name="news" property="title"/>
-                </td>
-                <td>
-                    <bean:write name="news" property="brief"/>
-                </td>
-                <td>
-                    <bean:write name="news" property="date"/>
-                </td>
-                <td>
-                    <bean:write name="news" property="content"/>
-                </td>
-                <td>
-                    <html:link action="/news?method=showViewNews&id=${news.id}">View</html:link>
-                    <html:link action="/news?method=showEditNews&id=${news.id}">Edit</html:link>
-                </td>
-                <td>
-                    <input type="checkbox">
-                </td>
-            </tr>
-        </logic:iterate>
+    <logic:iterate name="newsForm" property="newsList" id="news">
         <tr>
             <td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="#">Add</a></td>
+                <bean:write name="news" property="id"/>
+            </td>
             <td>
-                <button type="submit" class="btn btn-default">Delete</button>
+                <bean:write name="news" property="title"/>
+            </td>
+            <td>
+                <bean:write name="news" property="brief"/>
+            </td>
+            <td>
+                <bean:write name="news" property="date"/>
+            </td>
+            <td>
+                <bean:write name="news" property="content"/>
+            </td>
+            <td>
+                <html:link action="/news?method=showViewNews&id=${news.id}">View</html:link>
+                <html:link action="/news?method=showEditNews&id=${news.id}">Edit</html:link>
+            </td>
+            <td>
+                <html:multibox property="itemsToDelete" value="${news.id}" />
             </td>
         </tr>
-        </tbody>
+    </logic:iterate>
+    <tr>
+    <td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><a href="#">Add</a></td>
+    <td>
+    <button type="submit" class="btn btn-default">Delete</button>
+    </td>
+    </tr>
+    </tbody>
     </table>
 
+</html:form>
 
 
     <html:link page="/app/Locale?method=russian">Russian</html:link>
     <html:link page="/app/Locale?method=english">English</html:link>
-</div>
+    </div>
 
-</body>
-</html>
+    </body>
+    </html>

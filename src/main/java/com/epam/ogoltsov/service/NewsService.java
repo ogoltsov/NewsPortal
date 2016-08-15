@@ -51,5 +51,14 @@ public class NewsService implements IService<News> {
     }
 
     @Override
+    public void delete(int id) {
+        try {
+           dao.delete(id);
+        } catch (DaoException e) {
+            throw new ServiceException("", e);
+        }
+    }
+
+    @Override
     public void close() throws Exception {}
 }

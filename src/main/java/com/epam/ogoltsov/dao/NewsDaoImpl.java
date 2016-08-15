@@ -17,6 +17,7 @@ public class NewsDaoImpl implements Dao<News> {
     private static final String FIND_BY_ID = "SELECT * FROM news WHERE id = ?";
     private static final String SELECT_ALL = "SELECT  * FROM news ORDER BY DATE";
     private static final String UPDATE_NEWS = "UPDATE news SET title = ?, brief = ?, DATE = ?, content = ? WHERE id = ?;";
+    private static final String DELETE_NEWS = "DELETE FROM news WHERE id = ?";
 
     NewsDaoImpl() {
     }
@@ -96,7 +97,13 @@ public class NewsDaoImpl implements Dao<News> {
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(int id) throws DaoException {
+        try (Connection connection = DBConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(DELETE_NEWS)) {
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException e) {
+            throw new DaoException("", e);
+        }
     }
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 public class NewsActions extends DispatchAction {
 
@@ -50,27 +51,36 @@ public class NewsActions extends DispatchAction {
         }
         return mapping.findForward("showEditNews");
     }
-  public ActionForward editNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                      HttpServletResponse response) throws Exception {
 
-      NewsForm newsForm = (NewsForm) form;
-      News news = new News();
+    public ActionForward editNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                  HttpServletResponse response) throws Exception {
+        NewsForm newsForm = (NewsForm) form;
+        News news = new News();
 
-      news.setId(Integer.parseInt(newsForm.getId()));
-      news.setTitle(newsForm.getTitle());
+        news.setId(Integer.parseInt(newsForm.getId()));
+        news.setTitle(newsForm.getTitle());
+        news.setDate(LocalDate.parse(newsForm.getDate(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        news.setBrief(newsForm.getBrief());
+        news.setContent(newsForm.getContent());
+        newsForm.setNews(news);
 
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-      LocalDate date = LocalDate.parse(newsForm.getDate(), formatter);
-      news.setDate(date);
-
-      news.setBrief(newsForm.getBrief());
-      news.setContent(newsForm.getContent());
-      newsForm.setNews(news);
-
-      try (IService<News> newsService = new NewsService()) {
-          newsService.save(news);
-      }
+        try (IService<News> newsService = new NewsService()) {
+            newsService.save(news);
+        }
         return mapping.findForward("showViewNews");
+    }
+
+    public ActionForward delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                HttpServletResponse response) throws Exception {
+        NewsForm newsForm = (NewsForm) form;
+
+        try (IService<News> service = new NewsService()) {
+            for (String item : newsForm.getItemsToDelete()) {
+                service.delete(Integer.valueOf(item));
+            }
+        }
+        return mapping.findForward("deleteNews");
     }
 
 

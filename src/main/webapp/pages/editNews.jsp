@@ -23,7 +23,11 @@
     <html:textarea name="newsForm" property="content" value="${news1.content}" cols="5" rows="5"/>
     <br>
     <html:submit value="Save"/>
-    <br>
+    <html:link action="/news?method=delete">
+        Delete
+        <html:param name="itemsToDelete" value="${news1.id}"/>
+    </html:link>
+        <br>
     </html:form>
 </body>
 </html>
