@@ -87,9 +87,12 @@ public class NewsActions extends DispatchAction {
     public ActionForward addViewNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                      HttpServletResponse response) throws Exception {
         NewsForm newsForm = (NewsForm) form;
+
         News news = new News();
         news.setDate(LocalDate.now());
+//        newsForm.reset(mapping, request);
         newsForm.setNews(news);
+//        form = newsForm;
         return mapping.findForward("showAddNews");
 
     }

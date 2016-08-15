@@ -22,7 +22,7 @@
             <forward name="showViewNews" path="/pages/viewNews.jsp"/>
             <forward name="showEditNews" path="/pages/editNews.jsp"/>
             <forward name="deleteNews" path="/app/news?method=listNews" redirect="true" />
-            <forward name="showAddNews" path="/pages/addNews.jsp" />
+            <forward name="showAddNews" path="/pages/addNews.jsp"/>
 
             <!--<forward name="addNews" path="/news.do?method=listNews" redirect="true" />-->
             <!--<forward name="viewNews" path="viewNews" />-->

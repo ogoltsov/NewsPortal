@@ -9,13 +9,13 @@
 </head>
 <body>
 <html:form action="/news?method=addNews">
-    <bean:define id="news1" name="newsForm" property="news"/>
+    <%--<bean:define id="news1" name="newsForm" property="news"/>--%>
 
         <html:text name="newsForm" property="title"  size="200" maxlength="200"/>
     <br>
     <html:textarea name="newsForm" property="brief" cols="5" rows="5"/>
     <br>
-    <html:text name="newsForm" property="date" value="${news1.date}"/>
+    <html:text name="newsForm" property="date" value="${newsForm.news.date}"/>
     <br>
     <html:textarea name="newsForm" property="content"  cols="5" rows="5"/>
     <br>

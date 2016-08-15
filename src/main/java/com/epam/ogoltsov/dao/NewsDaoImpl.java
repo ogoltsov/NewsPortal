@@ -94,7 +94,7 @@ public class NewsDaoImpl implements Dao<News> {
             ps.setString(1, news.getTitle());
             ps.setString(2, news.getBrief());
             ps.setString(3, LocalDateTime.of(news.getDate(),
-                    LocalTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:SS")));
+                    LocalTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:ss")));
             ps.setString(4, news.getContent());
             ps.setInt(5, news.getId());
             ps.execute();

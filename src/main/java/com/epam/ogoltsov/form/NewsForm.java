@@ -2,7 +2,9 @@ package com.epam.ogoltsov.form;
 
 import com.epam.ogoltsov.model.News;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class NewsForm extends ActionForm {
@@ -78,5 +80,14 @@ public class NewsForm extends ActionForm {
 
     public void setItemsToDelete(String[] itemsToDelete) {
         this.itemsToDelete = itemsToDelete;
+    }
+
+    @Override
+    public void reset(ActionMapping mapping, HttpServletRequest request) {
+        title = "";
+        brief = "";
+        content = "";
+
+
     }
 }
