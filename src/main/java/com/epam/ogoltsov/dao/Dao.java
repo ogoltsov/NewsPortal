@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Dao<T> {
 
-    void insert(T t) throws DaoException;
+    T insert(T t) throws DaoException;
 
     T findById(int id) throws DaoException;
 

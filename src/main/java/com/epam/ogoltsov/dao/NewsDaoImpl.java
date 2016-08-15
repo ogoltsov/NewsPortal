@@ -13,7 +13,7 @@ import java.util.List;
 
 public class NewsDaoImpl implements Dao<News> {
 
-    private static final String INSERT_NEWS = "INSERT INTO news (title, brief, content)  VALUES (?,?,?)";
+    private static final String INSERT_NEWS = "INSERT INTO news (title, brief, content, DATE)  VALUES (?,?,?,?)";
     private static final String FIND_BY_ID = "SELECT * FROM news WHERE id = ?";
     private static final String SELECT_ALL = "SELECT  * FROM news ORDER BY DATE";
     private static final String UPDATE_NEWS = "UPDATE news SET title = ?, brief = ?, DATE = ?, content = ? WHERE id = ?;";
@@ -23,17 +23,24 @@ public class NewsDaoImpl implements Dao<News> {
     }
 
     @Override
-    public void insert(News news) throws DaoException {
+    public News insert(News news) throws DaoException {
         try (Connection connection = DBConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(INSERT_NEWS)) {
+             PreparedStatement ps = connection.prepareStatement(INSERT_NEWS,PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, news.getTitle());
             ps.setString(2, news.getBrief());
             ps.setString(3, news.getContent());
+            ps.setString(4,
+                    LocalDateTime.of(news.getDate(),
+                    LocalTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:ss")));
             ps.execute();
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            news.setId(rs.getInt(1));
         } catch (SQLException e) {
-            e.printStackTrace();
+                e.printStackTrace();
             throw new DaoException("", e);
         }
+        return news;
     }
 
     @Override

@@ -13,4 +13,6 @@ public interface IService<T> extends AutoCloseable {
     void save(T t);
 
     void delete(int id);
+
+    T insert(T t);
 }

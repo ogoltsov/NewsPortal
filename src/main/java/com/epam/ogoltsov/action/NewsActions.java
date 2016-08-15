@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 public class NewsActions extends DispatchAction {
 
@@ -57,7 +56,9 @@ public class NewsActions extends DispatchAction {
         NewsForm newsForm = (NewsForm) form;
         News news = new News();
 
-        news.setId(Integer.parseInt(newsForm.getId()));
+        if ((!newsForm.getId().equals("")) && (newsForm.getId() != null))
+            news.setId(Integer.parseInt(newsForm.getId()));
+        else news.setId(null);
         news.setTitle(newsForm.getTitle());
         news.setDate(LocalDate.parse(newsForm.getDate(),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd")));
@@ -81,6 +82,33 @@ public class NewsActions extends DispatchAction {
             }
         }
         return mapping.findForward("deleteNews");
+    }
+
+    public ActionForward addViewNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                     HttpServletResponse response) throws Exception {
+        NewsForm newsForm = (NewsForm) form;
+        News news = new News();
+        news.setDate(LocalDate.now());
+        newsForm.setNews(news);
+        return mapping.findForward("showAddNews");
+
+    }
+
+    public ActionForward addNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
+        NewsForm newsFormo = (NewsForm) form;
+        News news = new News();
+        news.setTitle(newsFormo.getTitle());
+        news.setBrief(newsFormo.getBrief());
+        news.setContent(newsFormo.getContent());
+        news.setDate(LocalDate.parse(newsFormo.getDate(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        News newNews;
+        try (IService<News> service = new NewsService()) {
+            newNews = service.insert(news);
+        }
+        newsFormo.setNews(newNews);
+        return mapping.findForward("showViewNews");
     }
 
 

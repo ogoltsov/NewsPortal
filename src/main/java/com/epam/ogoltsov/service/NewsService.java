@@ -44,7 +44,7 @@ public class NewsService implements IService<News> {
     public void save(News news) {
         try {
             if (news.getId() != null) dao.update(news);
-            else dao.insert(news);
+            else throw new DaoException("Entity error");
         } catch (DaoException e) {
             throw new ServiceException("", e);
         }
@@ -57,6 +57,17 @@ public class NewsService implements IService<News> {
         } catch (DaoException e) {
             throw new ServiceException("", e);
         }
+    }
+
+    @Override
+    public News insert(News news) {
+        News newNews;
+        try  {
+            newNews = dao.insert(news);
+        } catch (DaoException e) {
+            throw new ServiceException("", e);
+        }
+        return newNews;
     }
 
     @Override

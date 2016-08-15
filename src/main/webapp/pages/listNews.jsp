@@ -63,7 +63,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td><a href="#">Add</a></td>
+    <td><a href="/app/news?method=addViewNews">Add</a></td>
     <td>
     <button type="submit" class="btn btn-default">Delete</button>
     </td>
