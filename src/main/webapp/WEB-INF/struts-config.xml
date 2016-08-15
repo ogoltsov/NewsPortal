@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="newsForm" type="com.epam.ogoltsov.form.NewsForm"/>
+        <!--<form-bean name="newsFormList" type="com.epam.ogoltsov.newsPortal.form.NewsListForm"/>-->
+    </form-beans>
+
+    <global-exceptions>
+        <exception key="error.global.message" type="java.lang.Exception" path="/pages/error.jsp"/>
+    </global-exceptions>
+
+    <action-mappings>
+
+        <action path="/news" type="com.epam.ogoltsov.action.NewsActions"
+                parameter="method"
+                name="newsForm">
+            <forward name="listNews" path="/pages/listNews.jsp"/>
+            <forward name="showViewNews" path="/pages/viewNews.jsp"/>
+            <forward name="showEditNews" path="/pages/editNews.jsp"/>
+
+            <!--<forward name="showAddNews" path="showAddNews" />-->
+            <!--<forward name="addNews" path="/news.do?method=listNews" redirect="true" />-->
+            <!--<forward name="viewNews" path="viewNews" />-->
+            <!--<forward name="editNews" path="editNews" />-->
+            <!--<forward name="deleteNews" path="/news.do?method=listNews" redirect="true" />-->
+        </action>
+
+        <action
+                path="/Locale"
+                type="com.epam.ogoltsov.action.LanguageSelectAction"
+                parameter="method">
+            <forward name="success" path="/app/news?method=listNews"/>
+        </action>
+
+    </action-mappings>
+
+    <message-resources parameter="Common"/>
+
+</struts-config>
