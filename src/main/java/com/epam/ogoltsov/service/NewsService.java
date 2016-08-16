@@ -4,10 +4,6 @@ import com.epam.ogoltsov.dao.Dao;
 import com.epam.ogoltsov.dao.DaoException;
 import com.epam.ogoltsov.dao.DaoFactory;
 import com.epam.ogoltsov.model.News;
-import com.epam.ogoltsov.pool.DBConnectionPool;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 public class NewsService implements IService<News> {

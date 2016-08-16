@@ -17,7 +17,7 @@ public class LanguageSelectAction extends DispatchAction {
             throws Exception {
 
         request.getSession().setAttribute(
-                Globals.LOCALE_KEY, Locale.ENGLISH);
+                Globals.LOCALE_KEY, Locale.US);
         return mapping.findForward("success");
     }
 
@@ -26,7 +26,7 @@ public class LanguageSelectAction extends DispatchAction {
             throws Exception {
 
         request.getSession().setAttribute(
-                Globals.LOCALE_KEY, Locale.forLanguageTag("ru"));
+                Globals.LOCALE_KEY, new Locale("ru","RU"));
         return mapping.findForward("success");
     }
 }

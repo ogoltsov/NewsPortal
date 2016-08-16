@@ -93,7 +93,9 @@ public class NewsActions extends DispatchAction {
         NewsForm newsForm = (NewsForm) form;
         News news = new News();
         news.setDate(LocalDate.now());
+        news.setId(null);
         newsForm.setNews(news);
+
         return mapping.findForward("showAddNews");
 
     }

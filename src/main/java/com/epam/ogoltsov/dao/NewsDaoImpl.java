@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsDaoImpl implements Dao<News> {
+class NewsDaoImpl implements Dao<News> {
 
     private static final String INSERT_NEWS = "INSERT INTO news (title, brief, content, DATE)  VALUES (?,?,?,?)";
     private static final String FIND_BY_ID = "SELECT * FROM news WHERE id = ?";

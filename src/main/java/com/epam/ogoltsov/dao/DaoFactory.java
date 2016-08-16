@@ -18,12 +18,5 @@ public abstract class DaoFactory implements AutoCloseable {
     public abstract <T extends BaseEntity>  Dao<T> createDao(Class<T> clazz);
 
     @Override
-    public abstract void close() throws Exception;
-
-    public abstract void startTransaction() throws DaoException;
-
-    public abstract void finishTransaction() throws DaoException;
-
-    public abstract void rollback() throws DaoException;
-
+    public void close() throws Exception {   }
 }
