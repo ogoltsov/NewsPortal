@@ -3,9 +3,27 @@
         "http://jakarta.apache.org/struts/dtds/tiles-config_1_3.dtd">
 <tiles-definitions>
 
-    <definition name="listNewsPage" path="/pages/tiles/common-layout.jsp">
-        <put name="menu" value="/pages/tiles/menu.jsp" />
-        <put name="body" value="/pages/listNews.jsp" />
+    <definition name="commonDefinition" path="/WEB-INF/pages/tiles/common-layout.jsp">
+        <put name="header" value="/WEB-INF/pages/tiles/header.jsp" />
+        <put name="menu" value="/WEB-INF/pages/tiles/menu.jsp"/>
     </definition>
+
+    <definition name="listNews" extends="commonDefinition">
+        <put name="body" value="/WEB-INF/pages/listNews.jsp" />
+    </definition>
+
+    <definition name="showViewNews" extends="commonDefinition">
+        <put name="body" value="/WEB-INF/pages/viewNews.jsp" />
+    </definition>
+
+    <definition name="showEditNews" extends="commonDefinition">
+        <put name="body" value="/WEB-INF/pages/editNews.jsp" />
+    </definition>
+
+    <definition name="showAddNews" extends="commonDefinition">
+        <put name="body" value="/WEB-INF/pages/addNews.jsp" />
+    </definition>
+
+
 
 </tiles-definitions>

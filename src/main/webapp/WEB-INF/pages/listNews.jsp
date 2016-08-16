@@ -51,7 +51,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><a href="/app/news?method=addViewNews">Add</a></td>
+                <td><a href="/news.do?method=addViewNews">Add</a></td>
                 <td>
                     <button type="submit" class="btn btn-default">Delete</button>
                 </td>
@@ -60,8 +60,8 @@
         </table>
     </html:form>
 
-    <html:link page="/app/Locale?method=russian">Russian</html:link>
-    <html:link page="/app/Locale?method=english">English</html:link>
+    <html:link page="/Locale.do?method=russian">Russian</html:link>
+    <html:link page="/Locale.do?method=english">English</html:link>
 
 </div>
 

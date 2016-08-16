@@ -15,6 +15,9 @@
     </head>
 </head>
 <body>
+
+<tiles:insert attribute="header"/>
+
 <tiles:insert attribute="menu"/>
 
 <tiles:insert attribute="body"/>
