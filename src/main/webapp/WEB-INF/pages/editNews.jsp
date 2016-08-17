@@ -12,8 +12,7 @@
     <li class="active">Edit</li>
 </ol>
 
-<%--<html:form action="/news?method=editNews">--%>
-<html:form action="/editNews?method=editNews">
+<html:form action="/news?method=editNews">
     <html:hidden name="newsForm" property="id" value="${news1.id}"/>
     <jsp:include page="/WEB-INF/pages/tiles/editFields.jsp"/>
     <div class="row">
