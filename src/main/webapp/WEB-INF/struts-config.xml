@@ -6,23 +6,28 @@
 <struts-config>
     <form-beans>
         <form-bean name="newsForm" type="com.epam.ogoltsov.form.NewsForm"/>
-        <!--<form-bean name="newsFormList" type="com.epam.ogoltsov.newsPortal.form.NewsListForm"/>-->
     </form-beans>
 
-    <global-exceptions>
-        <exception key="error.global.message" type="java.lang.Exception" path="/WEB-INF/pages/error.jsp"/>
-    </global-exceptions>
+    <!--<global-exceptions>-->
+        <!--<exception key="error.global.message" type="java.lang.Exception" path="/WEB-INF/pages/error.jsp"/>-->
+    <!--</global-exceptions>-->
 
     <action-mappings>
 
         <action path="/news" type="com.epam.ogoltsov.action.NewsActions"
                 parameter="method"
-                name="newsForm">
+                name="newsForm"
+        >
             <forward name="listNews" path="listNews" redirect="true"/>
-            <forward name="showViewNews" path="showViewNews"/>
-            <forward name="showEditNews" path="showEditNews"/>
+            <forward name="showViewNews" path="showViewNews" redirect="true"/>
+            <forward name="showEditNews" path="showEditNews" redirect="true"/>
             <forward name="deleteNews" path="/news.do?method=listNews" redirect="true"/>
-            <forward name="showAddNews" path="showAddNews"/>
+            <forward name="showAddNews" path="showAddNews" redirect="true"/>
+        </action>
+
+        <action path="/editNews" type="com.epam.ogoltsov.action.NewsActions"
+                parameter="method" name="newsForm" validate="true" input="showEditNews">
+            <forward name="showViewNews" path="showViewNews" redirect="true"/>
         </action>
 
         <action
@@ -34,12 +39,12 @@
 
     </action-mappings>
 
-    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor" />
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
 
     <message-resources parameter="Common"/>
 
     <plug-in className="org.apache.struts.tiles.TilesPlugin">
         <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/>
-        <set-property property="moduleAware" value="true" />
+        <set-property property="moduleAware" value="true"/>
     </plug-in>
 </struts-config>

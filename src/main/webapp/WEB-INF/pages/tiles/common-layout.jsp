@@ -34,6 +34,7 @@
         </div>
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-10">
             <div class="workspace">
+                <html:errors />
                 <tiles:insert attribute="body"/>
             </div>
         </div>

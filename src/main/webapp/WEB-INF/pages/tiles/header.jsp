@@ -22,12 +22,12 @@
         <logic:equal name="org.apache.struts.action.LOCALE" value="ru_RU">
             <html:link page="/Locale.do?method=russian" styleClass=" ">
                 <button type="button" class="btn btn-default active">
-                    Russian
+                    <bean:message key="newsPortal.buttons.lang.russian"/>
                 </button>
             </html:link>
             <html:link page="/Locale.do?method=english" styleClass="">
                 <button type=type"button" class="btn btn-default">
-                    English
+                    <bean:message key="newsPortal.buttons.lang.english"/>
                 </button>
             </html:link>
         </logic:equal>
@@ -35,12 +35,12 @@
             <div class="btn-group" role="group" aria-label="...">
                 <html:link page="/Locale.do?method=russian" styleClass=" ">
                     <button type="button" class="btn btn-default">
-                        Russian
+                        <bean:message key="newsPortal.buttons.lang.russian"/>
                     </button>
                 </html:link>
                 <html:link page="/Locale.do?method=english" styleClass="">
                     <button type="button" class="btn btn-default active">
-                        English
+                        <bean:message key="newsPortal.buttons.lang.english"/>
                     </button>
                 </html:link>
             </div>

@@ -79,7 +79,7 @@
             <div class="container deleteButton">
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1
                             col-xs-offset-11 col-sm-offset-11 col-md-offset-11 col-lg-offset-11">
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger" >Delete</button>
                 </div>
             </div>
         </html:form>
