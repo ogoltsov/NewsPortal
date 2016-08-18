@@ -2,7 +2,7 @@ package com.epam.ogoltsov.service;
 
 import com.epam.ogoltsov.dao.DaoException;
 
-class ServiceException extends RuntimeException {
+public class ServiceException extends Exception {
 
     ServiceException(String s) {
         super(s);

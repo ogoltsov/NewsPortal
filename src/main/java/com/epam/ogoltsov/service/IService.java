@@ -8,9 +8,9 @@ public interface IService<T> extends AutoCloseable {
 
     T findById(int id) throws ServiceException;
 
-    void save(T t);
+    void save(T t) throws ServiceException;
 
-    void delete(int id);
+    void delete(int id) throws ServiceException;
 
-    T insert(T t);
+    T insert(T t) throws ServiceException;
 }

@@ -1,8 +1,7 @@
 package com.epam.ogoltsov.pool;
 
 class DBConnectionPoolException extends RuntimeException {
-    public DBConnectionPoolException() {
-    }
+
 
     DBConnectionPoolException(String message) {
         super(message);
