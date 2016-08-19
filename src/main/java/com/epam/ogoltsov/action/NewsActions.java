@@ -1,10 +1,10 @@
 package com.epam.ogoltsov.action;
 
+import com.epam.ogoltsov.form.DeleteNewsForm;
 import com.epam.ogoltsov.form.NewsForm;
 import com.epam.ogoltsov.model.News;
 import com.epam.ogoltsov.service.IService;
 import com.epam.ogoltsov.service.NewsService;
-import com.epam.ogoltsov.service.ServiceException;
 import com.epam.ogoltsov.servlet.SpringContextSingleton;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -12,9 +12,6 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,11 +33,15 @@ public class NewsActions extends DispatchAction {
 //        this.service = service;
 //    }
 
-    public NewsActions() throws ServiceException {
-//        service = SpringContextSingleton.getContext().getBean("newsService", NewsService.class);
-        service = new NewsService();
+    public NewsActions() {
+        service = SpringContextSingleton.getContext().getBean("newsService", NewsService.class);
+
     }
 
+
+    public NewsActions(IService<News> service) {
+        this.service = service;
+    }
 
     public ActionForward listNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                   HttpServletResponse response) throws Exception {
@@ -93,10 +94,10 @@ public class NewsActions extends DispatchAction {
 
     public ActionForward delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
-        NewsForm newsForm = (NewsForm) form;
+        DeleteNewsForm deleteNewsForm = (DeleteNewsForm) form;
 
-        if ((newsForm.getItemsToDelete() != null) && (newsForm.getItemsToDelete().length != 0)) {
-            for (String item : newsForm.getItemsToDelete())
+        if ((deleteNewsForm.getItemsToDelete() != null) && (deleteNewsForm.getItemsToDelete().length != 0)) {
+            for (String item : deleteNewsForm.getItemsToDelete())
                 service.delete(Integer.valueOf(item));
             return mapping.findForward("deleteNews");
         }

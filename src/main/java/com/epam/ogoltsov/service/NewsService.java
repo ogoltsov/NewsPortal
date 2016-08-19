@@ -2,14 +2,12 @@ package com.epam.ogoltsov.service;
 
 import com.epam.ogoltsov.dao.Dao;
 import com.epam.ogoltsov.dao.DaoException;
-import com.epam.ogoltsov.dao.DaoFactory;
 import com.epam.ogoltsov.model.News;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class NewsService implements IService<News> {
 
     private static final String EMPTY_DAO_EXCEPTION = "Dao is empty";
@@ -20,40 +18,32 @@ public class NewsService implements IService<News> {
     private static final String DELETE_NEWS_EXCEPTION = "Can't delete news by id";
     private static final String INSERT_NEWS_EXCEPTION = "Can't insert news in DB";
 
-    private Dao<News> dao;
+    private Dao<News> newsDao;
 
-    @Autowired
-    private DaoFactory daoFactory;
-
-    public Dao<News> getDao() {
-        return dao;
+    public Dao<News> getNewsDao() {
+        return newsDao;
     }
 
-    public void setDao(Dao<News> dao) {
-        this.dao = dao;
+    public void setNewsDao(Dao<News> newsDao) {
+        this.newsDao = newsDao;
     }
 
-    public DaoFactory getDaoFactory() {
-        return daoFactory;
+    public NewsService(Dao<News> newsDao) {
+        this.newsDao = newsDao;
     }
 
-    public void setDaoFactory(DaoFactory daoFactory) {
-        this.daoFactory = daoFactory;
-    }
-
-    @Autowired
     public NewsService() throws ServiceException {
-        DaoFactory daoFactory = DaoFactory.newInstance(DaoFactory.JDBC);
-        if (daoFactory != null) {
-            dao = daoFactory.createDao(News.class);
-            if (dao == null) throw new ServiceException(EMPTY_DAO_EXCEPTION);
-        } else throw new ServiceException(EMPTY_DAO_FACTORY_EXCEPTION);
+//        DaoFactory daoFactory = DaoFactory.newInstance(DaoFactory.JDBC);
+//        if (daoFactory != null) {
+//            newsDao = daoFactory.createDao(News.class);
+//            if (newsDao == null) throw new ServiceException(EMPTY_DAO_EXCEPTION);
+//        } else throw new ServiceException(EMPTY_DAO_FACTORY_EXCEPTION);
     }
 
     @Override
     public List<News> findAll() throws ServiceException {
         try {
-            return dao.findAll();
+            return newsDao.findAll();
         } catch (DaoException e) {
             throw new ServiceException(FIND_ALL_EXCEPTION, e);
         }
@@ -62,7 +52,7 @@ public class NewsService implements IService<News> {
     @Override
     public News findById(int id) throws ServiceException {
         try {
-            return dao.findById(id);
+            return newsDao.findById(id);
         } catch (DaoException e) {
             throw new ServiceException(FIND_BY_ID_EXCEPTION, e);
         }
@@ -71,7 +61,7 @@ public class NewsService implements IService<News> {
     @Override
     public void save(News news) throws ServiceException {
         try {
-            if (news.getId() != null) dao.update(news);
+            if (news.getId() != null) newsDao.update(news);
             else throw new DaoException("Entity error");
         } catch (DaoException e) {
             throw new ServiceException(SAVE_EXCEPTION, e);
@@ -81,7 +71,7 @@ public class NewsService implements IService<News> {
     @Override
     public void delete(int id) throws ServiceException {
         try {
-            dao.delete(id);
+            newsDao.delete(id);
         } catch (DaoException e) {
             throw new ServiceException(DELETE_NEWS_EXCEPTION, e);
         }
@@ -91,7 +81,7 @@ public class NewsService implements IService<News> {
     public News insert(News news) throws ServiceException {
         News newNews;
         try {
-            newNews = dao.insert(news);
+            newNews = newsDao.insert(news);
         } catch (DaoException e) {
             throw new ServiceException(INSERT_NEWS_EXCEPTION, e);
         }
