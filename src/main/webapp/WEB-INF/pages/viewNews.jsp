@@ -80,7 +80,7 @@
                             Edit
                         </button>
                     </html:link>
-                    <html:link action="/news?method=delete">
+                    <html:link action="/delete">
                         <button type="button" class="btn btn-danger">
                             Delete!
                         </button>

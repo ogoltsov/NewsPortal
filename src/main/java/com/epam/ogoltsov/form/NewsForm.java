@@ -5,12 +5,9 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
-import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.BaseConfig;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NewsForm extends ActionForm {
@@ -22,7 +19,6 @@ public class NewsForm extends ActionForm {
     private String brief;
     private String content;
     private List<News> newsList;
-    private String[] itemsToDelete;
     private String input;
 
     public String getInput() {
@@ -87,14 +83,6 @@ public class NewsForm extends ActionForm {
 
     public void setNewsList(List<News> newsList) {
         this.newsList = newsList;
-    }
-
-    public String[] getItemsToDelete() {
-        return itemsToDelete;
-    }
-
-    public void setItemsToDelete(String[] itemsToDelete) {
-        this.itemsToDelete = itemsToDelete;
     }
 
     @Override

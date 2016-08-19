@@ -20,24 +20,8 @@ public class NewsService implements IService<News> {
 
     private Dao<News> newsDao;
 
-    public Dao<News> getNewsDao() {
-        return newsDao;
-    }
-
-    public void setNewsDao(Dao<News> newsDao) {
-        this.newsDao = newsDao;
-    }
-
     public NewsService(Dao<News> newsDao) {
         this.newsDao = newsDao;
-    }
-
-    public NewsService() throws ServiceException {
-//        DaoFactory daoFactory = DaoFactory.newInstance(DaoFactory.JDBC);
-//        if (daoFactory != null) {
-//            newsDao = daoFactory.createDao(News.class);
-//            if (newsDao == null) throw new ServiceException(EMPTY_DAO_EXCEPTION);
-//        } else throw new ServiceException(EMPTY_DAO_FACTORY_EXCEPTION);
     }
 
     @Override

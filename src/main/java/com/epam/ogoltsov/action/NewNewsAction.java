@@ -47,6 +47,6 @@ public class NewNewsAction extends DispatchAction {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         service.insert(news);
 
-        return mapping.findForward("main");
+        return mapping.findForward("mainPage");
     }
 }

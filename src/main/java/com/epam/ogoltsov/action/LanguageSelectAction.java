@@ -13,20 +13,16 @@ import java.util.Locale;
 public class LanguageSelectAction extends DispatchAction {
 
     public ActionForward english(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-
+                                 HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.getSession().setAttribute(
                 Globals.LOCALE_KEY, Locale.US);
-        return mapping.findForward("success");
+        return mapping.findForward("mainPage");
     }
 
     public ActionForward russian(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-
+                                 HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.getSession().setAttribute(
                 Globals.LOCALE_KEY, new Locale("ru","RU"));
-        return mapping.findForward("success");
+        return mapping.findForward("mainPage");
     }
 }

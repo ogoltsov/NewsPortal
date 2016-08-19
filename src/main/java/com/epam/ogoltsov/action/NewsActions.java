@@ -85,20 +85,4 @@ public class NewsActions extends DispatchAction {
         service.save(news);
         return mapping.findForward("showViewNews");
     }
-
-    public ActionForward delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                HttpServletResponse response) throws Exception {
-        NewsForm newsForm = (NewsForm) form;
-
-        if ((newsForm.getItemsToDelete() != null) && (newsForm.getItemsToDelete().length != 0)) {
-            for (String item : newsForm.getItemsToDelete())
-                service.delete(Integer.valueOf(item));
-            return mapping.findForward("deleteNews");
-        }
-        return listNews(mapping, form, request, response);
-    }
-
-
-
-
 }

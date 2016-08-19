@@ -23,6 +23,9 @@
         background: linear-gradient(to right, #ffffff 0%, #f9f9f9 50%, #ffffff 99%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
     }
+    div.errors {
+        color: red;
+    }
 </style>
 <div>
     <ol class="breadcrumb">
@@ -31,7 +34,7 @@
     </ol>
 
     <div class="newsList">
-        <html:form action="/news?method=delete">
+        <html:form action="/delete?method=delete">
             <logic:iterate name="newsForm" property="newsList" id="news">
                 <div class="news">
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
@@ -78,6 +81,7 @@
                 </div>
             </logic:iterate>
             <div class="container deleteButton">
+                    <div class="errors"><html:errors/></div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1
                             col-xs-offset-11 col-sm-offset-11 col-md-offset-11 col-lg-offset-11">
                     <button type="submit" class="btn btn-danger" >Delete</button>

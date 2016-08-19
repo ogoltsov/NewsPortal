@@ -7,45 +7,46 @@
     <form-beans>
         <form-bean name="newsForm" type="com.epam.ogoltsov.form.NewsForm"/>
         <form-bean name="newNewsForm" type="com.epam.ogoltsov.form.NewNewsForm"/>
+        <form-bean name="deleteNewsForm" type="com.epam.ogoltsov.form.DeleteNewsForm"/>
     </form-beans>
 
-    <!--<global-exceptions>-->
-    <!--<exception key="error.global.message" type="java.lang.Exception" path="/WEB-INF/pages/error.jsp"/>-->
-    <!--</global-exceptions>-->
+    <global-exceptions>
+        <exception key="error.global.message" type="java.lang.Exception" path="/WEB-INF/pages/error.jsp"/>
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="listNews" path="listNews"/>
+        <forward name="showViewNews" path="showViewNews" redirect="true"/>
+        <forward name="showEditNews" path="showEditNews" redirect="true"/>
+        <forward name="deleteNews" path="/news.do?method=listNews" redirect="true"/>
+        <forward name="showAddNews" path="showAddNews" redirect="true"/>
+        <forward name="mainPage" path="/news.do?method=listNews" redirect="true"/>
+    </global-forwards>
 
     <action-mappings>
-
-        <action path="/news" type="com.epam.ogoltsov.action.NewsActions"
+        <action path="/news"
+                type="com.epam.ogoltsov.action.NewsActions"
                 parameter="method"
                 name="newsForm"
                 validate="true"
-                input="showEditNews"
-        >
-            <forward name="listNews" path="listNews"/>
-            <forward name="showViewNews" path="showViewNews" redirect="true"/>
-            <forward name="showEditNews" path="showEditNews" redirect="true"/>
-            <forward name="deleteNews" path="/news.do?method=listNews" redirect="true"/>
-            <forward name="showAddNews" path="showAddNews" redirect="true"/>
-        </action>
+                input="showEditNews"/>
 
-        <action path="/newNews" type="com.epam.ogoltsov.action.NewNewsAction"
+        <action path="/delete"
+                type="com.epam.ogoltsov.action.DeleteNewsAction"
+                name="deleteNewsForm"
+                validate="true"
+                input="listNews"/>
+
+        <action path="/newNews"
+                type="com.epam.ogoltsov.action.NewNewsAction"
                 parameter="method"
                 name="newNewsForm"
                 validate="true"
-                input="showAddNews">
-            <forward name="listNews" path="listNews"/>
-            <forward name="showViewNews" path="showViewNews"/>
-            <forward name="showAddNews" path="showAddNews" redirect="true"/>
-            <forward name="main" path="/news.do?method=listNews" redirect="true"/>
-        </action>
+                input="showAddNews"/>
 
-        <action
-                path="/Locale"
+        <action path="/Locale"
                 type="com.epam.ogoltsov.action.LanguageSelectAction"
-                parameter="method">
-            <forward name="success" path="/news.do?method=listNews"/>
-        </action>
-
+                parameter="method"/>
     </action-mappings>
 
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
@@ -56,6 +57,7 @@
         <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/>
         <set-property property="moduleAware" value="true"/>
     </plug-in>
+
     <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
         <set-property property="contextConfigLocation" value="classpath:applicationContext.xml"/>
     </plug-in>

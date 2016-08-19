@@ -1,15 +1,11 @@
 package com.epam.ogoltsov.form;
 
-import com.epam.ogoltsov.model.News;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class NewNewsForm extends ActionForm {

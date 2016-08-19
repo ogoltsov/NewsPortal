@@ -2,8 +2,6 @@ package com.epam.ogoltsov.dao;
 
 import com.epam.ogoltsov.model.News;
 import com.epam.ogoltsov.pool.DBConnectionPool;
-import com.epam.ogoltsov.servlet.SpringContextSingleton;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.*;
 import java.time.LocalDate;
