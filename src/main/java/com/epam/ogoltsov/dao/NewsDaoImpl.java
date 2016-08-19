@@ -71,7 +71,7 @@ class NewsDaoImpl implements Dao<News> {
     }
 
     private News getObjectFromResultSet(ResultSet rs) throws SQLException {
-        News news = SpringContextSingleton.getContext().getBean("news", News.class);
+        News news = new News();
 
         news.setId(rs.getInt("id"));
         news.setTitle(rs.getString("title"));

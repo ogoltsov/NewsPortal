@@ -6,6 +6,7 @@
 <struts-config>
     <form-beans>
         <form-bean name="newsForm" type="com.epam.ogoltsov.form.NewsForm"/>
+        <form-bean name="newNewsForm" type="com.epam.ogoltsov.form.NewNewsForm"/>
     </form-beans>
 
     <!--<global-exceptions>-->
@@ -17,12 +18,25 @@
         <action path="/news" type="com.epam.ogoltsov.action.NewsActions"
                 parameter="method"
                 name="newsForm"
+                validate="true"
+                input="showEditNews"
         >
             <forward name="listNews" path="listNews"/>
             <forward name="showViewNews" path="showViewNews" redirect="true"/>
             <forward name="showEditNews" path="showEditNews" redirect="true"/>
             <forward name="deleteNews" path="/news.do?method=listNews" redirect="true"/>
             <forward name="showAddNews" path="showAddNews" redirect="true"/>
+        </action>
+
+        <action path="/newNews" type="com.epam.ogoltsov.action.NewNewsAction"
+                parameter="method"
+                name="newNewsForm"
+                validate="true"
+                input="showAddNews">
+            <forward name="listNews" path="listNews"/>
+            <forward name="showViewNews" path="showViewNews"/>
+            <forward name="showAddNews" path="showAddNews" redirect="true"/>
+            <forward name="main" path="/news.do?method=listNews" redirect="true"/>
         </action>
 
         <action

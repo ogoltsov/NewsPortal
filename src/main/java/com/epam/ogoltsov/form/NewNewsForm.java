@@ -5,49 +5,19 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
-import org.apache.struts.config.ActionConfig;
-import org.apache.struts.config.BaseConfig;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NewsForm extends ActionForm {
+public class NewNewsForm extends ActionForm {
 
-    private News news;
-    private String id;
     private String title;
     private String date;
     private String brief;
     private String content;
-    private List<News> newsList;
-    private String[] itemsToDelete;
-    private String input;
-
-    public String getInput() {
-        return input;
-    }
-
-    public void setInput(String input) {
-        this.input = input;
-    }
-
-    public News getNews() {
-        return news;
-    }
-
-    public void setNews(News news) {
-        this.news = news;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -81,30 +51,6 @@ public class NewsForm extends ActionForm {
         this.content = content;
     }
 
-    public List<News> getNewsList() {
-        return newsList;
-    }
-
-    public void setNewsList(List<News> newsList) {
-        this.newsList = newsList;
-    }
-
-    public String[] getItemsToDelete() {
-        return itemsToDelete;
-    }
-
-    public void setItemsToDelete(String[] itemsToDelete) {
-        this.itemsToDelete = itemsToDelete;
-    }
-
-    @Override
-    public void reset(ActionMapping mapping, HttpServletRequest request) {
-        title = "";
-        brief = "";
-        content = "";
-    }
-
-    private static final String NUMBER_PATTERN = "^\\d+$";
     private static final String DATE_PATTERN = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
     @Override
@@ -112,9 +58,7 @@ public class NewsForm extends ActionForm {
         ActionErrors errors = new ActionErrors();
         String method = request.getParameter("method");
 
-        if (method.equals("editNews")) {
-            if (!isValid(NUMBER_PATTERN, id))
-                errors.add("news.id.err", new ActionMessage("error.news.id.required"));
+        if (method.equals("addNews")) {
             if (!(title.length() <= 100))
                 errors.add("news.title.err", new ActionMessage("error.news.title.length"));
             if (!(brief.length() <= 500))
@@ -130,6 +74,4 @@ public class NewsForm extends ActionForm {
     private boolean isValid(String regex, String input) {
         return Pattern.matches(regex, input);
     }
-
-
 }

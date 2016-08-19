@@ -3,17 +3,58 @@
 <%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<bean:define id="news1" name="newsForm" property="news"/>
-
+<bean:define id="newsForm" name="newNewsForm"/>
+<style>
+    div.errors {
+        color: red;
+    }
+</style>
 <ol class="breadcrumb">
     <li>Home</li>
     <li><a href="${pageContext.request.contextPath}/news.do?method=listNews">News</a></li>
     <li class="active">New news</li>
 </ol>
-<html:form action="/news?method=addNews">
+<div class="errors">
+    <html:errors/>
+</div>
+<html:form action="/newNews?method=addNews">
 
-    <jsp:include page="/WEB-INF/pages/tiles/editFields.jsp"/>
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <script>
+        $(document).ready(function () {
+            var date_input = $('input[id="InputDate"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'yyyy-mm-dd',
+                container: container,
+                todayHighlight: true,
+                autoclose: true
+            })
+        })
+    </script>
+    <div class="form-group">
+        <label for="InputTitle">Title:</label>
+        <html:text name="newsForm" property="title" value="${newsForm.title}" size="100" maxlength="100"
+                   styleClass="form-control" styleId="InputTitle"/>
+    </div>
+    <div class="form-group">
+        <label for="InputBrief">Brief:</label>
+        <html:textarea styleId="InputBrief" styleClass="form-control" name="newsForm" property="brief"
+                       value="${newsForm.brief}" cols="50" rows="5"/>
+    </div>
+    <div class="form-group">
+        <label for="InputDate">Date:</label>
+        <html:text styleId="InputDate" styleClass="form-control" name="newsForm" property="date" value="${newsForm.date}" maxlength="10"/>
+    </div>
+    <div class="form-group">
+        <label for="InputContent">Content:</label>
+        <html:textarea styleId="InputContent" styleClass="form-control" name="newsForm" property="content"
+                       value="${newsForm.content}" cols="5" rows="10"/>
+    </div>
     <div class="row">
         <div class="container">
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3

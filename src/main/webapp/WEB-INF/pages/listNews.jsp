@@ -13,6 +13,7 @@
     }
     div.deleteButton {
         padding-top: 20px;
+        padding-bottom: 50px;
     }
     div.news {
         padding-top: 10px;

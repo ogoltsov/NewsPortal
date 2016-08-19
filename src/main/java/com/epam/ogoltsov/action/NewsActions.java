@@ -22,21 +22,10 @@ public class NewsActions extends DispatchAction {
     private static final Logger log = LoggerFactory.getLogger(NewsActions.class);
 
     private IService<News> service;
-//    private NewsService service = SpringContextSingleton.getContext().getBean("newsService", NewsService.class);
-
-//    public NewsService getService() {
-//        return service;
-//    }
-//
-//    public void setService(NewsService service) {
-//        this.service = service;
-//    }
 
     public NewsActions() {
         service = SpringContextSingleton.getContext().getBean("newsService", NewsService.class);
-
     }
-
 
     public NewsActions(IService<News> service) {
         this.service = service;
@@ -67,6 +56,12 @@ public class NewsActions extends DispatchAction {
         NewsForm newsForm = (NewsForm) form;
 
         News news = service.findById(Integer.valueOf(newsForm.getId()));
+
+        newsForm.setTitle(news.getTitle());
+        newsForm.setBrief(news.getBrief());
+        newsForm.setContent(news.getContent());
+        newsForm.setDate(news.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
         newsForm.setNews(news);
         newsForm.setId(String.valueOf(news.getId()));
         return mapping.findForward("showEditNews");
@@ -103,31 +98,7 @@ public class NewsActions extends DispatchAction {
         return listNews(mapping, form, request, response);
     }
 
-    public ActionForward addViewNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                     HttpServletResponse response) throws Exception {
-        NewsForm newsForm = (NewsForm) form;
-        News news = new News();
-        news.setDate(LocalDate.now());
-        news.setId(null);
-        newsForm.setNews(news);
 
-        return mapping.findForward("showAddNews");
-    }
-
-    public ActionForward addNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response) throws Exception {
-        NewsForm newsForm = (NewsForm) form;
-        News news = new News();
-        news.setTitle(newsForm.getTitle());
-        news.setBrief(newsForm.getBrief());
-        news.setContent(newsForm.getContent());
-        news.setDate(LocalDate.parse(newsForm.getDate(),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        News newNews;
-        newNews = service.insert(news);
-        newsForm.setNews(newNews);
-        return mapping.findForward("showViewNews");
-    }
 
 
 }

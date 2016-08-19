@@ -11,7 +11,14 @@
     <li><a href="${pageContext.request.contextPath}/news.do?method=showViewNews&id=${news1.id}">${news1.title}</a></li>
     <li class="active">Edit</li>
 </ol>
-
+<style>
+    div.errors {
+        color: red;
+    }
+</style>
+<div class="errors">
+    <html:errors/>
+</div>
 <html:form action="/news?method=editNews">
     <html:hidden name="newsForm" property="id" value="${news1.id}"/>
     <jsp:include page="/WEB-INF/pages/tiles/editFields.jsp"/>
@@ -25,8 +32,8 @@
                     </html:link>
                     <html:link action="/news.do?method=showViewNews&id=${news1.id}">
                         <button type="submit" formaction="/news.do?method=showViewNews&id=${news1.id}"
-                        class="btn btn-warning">
-                        Cancel
+                                class="btn btn-warning">
+                            Cancel
                         </button>
                     </html:link>
                     <html:link action="/news?method=delete">

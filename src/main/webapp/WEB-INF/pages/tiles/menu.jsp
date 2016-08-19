@@ -14,7 +14,7 @@
             <html:link action="/news?method=listNews" styleClass="list-group-item ">
                 <bean:message key="left.menu.ref.news.list"/>
             </html:link>
-            <html:link action="/news?method=addViewNews" styleClass="list-group-item ">
+            <html:link action="/newNews?method=addViewNews" styleClass="list-group-item ">
                 <bean:message key="left.menu.ref.add.news"/>
             </html:link>
             <br>
