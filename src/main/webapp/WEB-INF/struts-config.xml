@@ -9,7 +9,7 @@
     </form-beans>
 
     <!--<global-exceptions>-->
-        <!--<exception key="error.global.message" type="java.lang.Exception" path="/WEB-INF/pages/error.jsp"/>-->
+    <!--<exception key="error.global.message" type="java.lang.Exception" path="/WEB-INF/pages/error.jsp"/>-->
     <!--</global-exceptions>-->
 
     <action-mappings>
@@ -18,17 +18,12 @@
                 parameter="method"
                 name="newsForm"
         >
-            <forward name="listNews" path="listNews" />
+            <forward name="listNews" path="listNews"/>
             <forward name="showViewNews" path="showViewNews" redirect="true"/>
             <forward name="showEditNews" path="showEditNews" redirect="true"/>
             <forward name="deleteNews" path="/news.do?method=listNews" redirect="true"/>
             <forward name="showAddNews" path="showAddNews" redirect="true"/>
         </action>
-
-        <!--<action path="/editNews" type="com.epam.ogoltsov.action.NewsActions"-->
-                <!--parameter="method" name="newsForm" validate="true" input="showEditNews">-->
-            <!--<forward name="showViewNews" path="showViewNews" redirect="true"/>-->
-        <!--</action>-->
 
         <action
                 path="/Locale"
@@ -48,7 +43,8 @@
         <set-property property="moduleAware" value="true"/>
     </plug-in>
     <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
-        <set-property property="contextConfigLocation" value="classpath:applicationContext.xml" />
+        <set-property property="contextConfigLocation" value="classpath:applicationContext.xml"/>
     </plug-in>
+
 
 </struts-config>

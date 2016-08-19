@@ -1,6 +1,5 @@
 package com.epam.ogoltsov.action;
 
-import com.epam.ogoltsov.form.DeleteNewsForm;
 import com.epam.ogoltsov.form.NewsForm;
 import com.epam.ogoltsov.model.News;
 import com.epam.ogoltsov.service.IService;
@@ -94,10 +93,10 @@ public class NewsActions extends DispatchAction {
 
     public ActionForward delete(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
-        DeleteNewsForm deleteNewsForm = (DeleteNewsForm) form;
+        NewsForm newsForm = (NewsForm) form;
 
-        if ((deleteNewsForm.getItemsToDelete() != null) && (deleteNewsForm.getItemsToDelete().length != 0)) {
-            for (String item : deleteNewsForm.getItemsToDelete())
+        if ((newsForm.getItemsToDelete() != null) && (newsForm.getItemsToDelete().length != 0)) {
+            for (String item : newsForm.getItemsToDelete())
                 service.delete(Integer.valueOf(item));
             return mapping.findForward("deleteNews");
         }
