@@ -19,6 +19,8 @@
 <div class="errors">
     <html:errors/>
 </div>
+
+
 <html:form action="/news?method=editNews">
     <html:hidden name="newsForm" property="id" value="${news1.id}"/>
     <jsp:include page="/WEB-INF/pages/tiles/editFields.jsp"/>
@@ -28,17 +30,19 @@
                             col-xs-offset-9 col-sm-offset-9 col-md-offset-9 col-lg-offset-9">
                 <div class="btn-group">
                     <html:link action="/news?method=listNews">
-                        <html:submit styleClass="btn btn-success" value="Save"/>
+                        <html:submit styleClass="btn btn-success" >
+                            <bean:message key="news.action.save"/>
+                        </html:submit>
                     </html:link>
                     <html:link action="/news.do?method=showViewNews&id=${news1.id}">
                         <button type="submit" formaction="/news.do?method=showViewNews&id=${news1.id}"
                                 class="btn btn-warning">
-                            Cancel
+                            <bean:message key="news.action.cancel"/>
                         </button>
                     </html:link>
                     <html:link action="/delete">
                         <button type="button" class="btn btn-danger">
-                            Delete!
+                            <bean:message key="news.action.delete"/>
                         </button>
                         <html:param name="itemsToDelete" value="${news1.id}"/>
                     </html:link>

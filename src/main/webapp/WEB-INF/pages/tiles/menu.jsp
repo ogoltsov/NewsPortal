@@ -10,7 +10,6 @@
 <div class="left_menu">
     <div class="left_menu_items_block">
         <div class="list-group">
-            <%--<bean:message key="left.menu.title.news"/>--%>
             <html:link action="/news?method=listNews" styleClass="list-group-item ">
                 <bean:message key="left.menu.ref.news.list"/>
             </html:link>

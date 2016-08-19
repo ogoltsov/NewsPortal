@@ -65,15 +65,19 @@
                                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"></div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                        <html:link action="/news?method=showViewNews&id=${news.id}">View</html:link>
+                                        <html:link action="/news?method=showViewNews&id=${news.id}">
+                                            <bean:message key="news.action.view"/>
+                                        </html:link>
                                     </div>
-                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                        <html:link action="/news?method=showEditNews&id=${news.id}">Edit</html:link>
+                                    <div class="col-xs-3 col-sm-3 col-md-5 col-lg-5">
+                                        <html:link action="/news?method=showEditNews&id=${news.id}">
+                                            <bean:message key="news.action.edit"/>
+                                        </html:link>
                                     </div>
-                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                         <html:multibox property="itemsToDelete" value="${news.id}"/>
                                     </div>
-                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+                                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"></div>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +88,9 @@
                     <div class="errors"><html:errors/></div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1
                             col-xs-offset-11 col-sm-offset-11 col-md-offset-11 col-lg-offset-11">
-                    <button type="submit" class="btn btn-danger" >Delete</button>
+                    <button type="submit" class="btn btn-danger" >
+                        <bean:message key="news.action.delete"/>
+                    </button>
                 </div>
             </div>
         </html:form>

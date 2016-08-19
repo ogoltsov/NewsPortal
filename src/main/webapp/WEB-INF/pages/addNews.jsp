@@ -37,21 +37,22 @@
         })
     </script>
     <div class="form-group">
-        <label for="InputTitle">Title:</label>
+        <label for="InputTitle">
+            <bean:message key="news.edit.title"/>:</label>
         <html:text name="newsForm" property="title" value="${newsForm.title}" size="100" maxlength="100"
                    styleClass="form-control" styleId="InputTitle"/>
     </div>
     <div class="form-group">
-        <label for="InputBrief">Brief:</label>
+        <label for="InputBrief"><bean:message key="news.edit.brief"/>:</label>
         <html:textarea styleId="InputBrief" styleClass="form-control" name="newsForm" property="brief"
                        value="${newsForm.brief}" cols="50" rows="5"/>
     </div>
     <div class="form-group">
-        <label for="InputDate">Date:</label>
+        <label for="InputDate"><bean:message key="news.edit.date"/>:</label>
         <html:text styleId="InputDate" styleClass="form-control" name="newsForm" property="date" value="${newsForm.date}" maxlength="10"/>
     </div>
     <div class="form-group">
-        <label for="InputContent">Content:</label>
+        <label for="InputContent"><bean:message key="news.edit.content"/>:</label>
         <html:textarea styleId="InputContent" styleClass="form-control" name="newsForm" property="content"
                        value="${newsForm.content}" cols="5" rows="10"/>
     </div>
@@ -61,11 +62,11 @@
                             col-xs-offset-9 col-sm-offset-9 col-md-offset-9 col-lg-offset-9">
                 <div class="btn-group">
                     <button type="submit" class="btn btn-success">
-                        Save
+                        <bean:message key="news.action.save"/>
                     </button>
                     <button type="submit" class="btn btn-warning"
                             formaction="/news.do?method=listNews">
-                        Cancel
+                        <bean:message key="news.action.cancel"/>
                     </button>
                 </div>
             </div>
