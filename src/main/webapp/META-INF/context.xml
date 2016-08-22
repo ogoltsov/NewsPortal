@@ -6,7 +6,7 @@
               driverClassName="oracle.jdbc.OracleDriver"
               url="jdbc:oracle:thin:@//localhost:1521/XE"
               username="system"
-              password="Ogoltsov"
+              password="root"
               maxTotal="20"
               maxIdle="10"
               minIdle="3"
@@ -20,26 +20,4 @@
               timeBetweenEvictionRunsMillis="10000"
               minEvictableIdleTimeMillis="10000"
     />
-
-    <Resource name="jdbc/TestDB"
-              auth="Container"
-              type="javax.sql.DataSource"
-              maxTotal="30"
-              maxIdle="10"
-              minIdle="3"
-              maxWaitMillis="8000"
-              username="root"
-              password="Ogoltsov"
-              driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://localhost:3306/java"
-              removeAbandonedOnMaintenance="true"
-              removeAbandonedTimeout="15"
-              logAbandoned="true"
-              initialSize="8"
-              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-              suspectTimeout="10"
-              timeBetweenEvictionRunsMillis="12000"
-              minEvictableIdleTimeMillis="16000"
-    />
-
 </Context>

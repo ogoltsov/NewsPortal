@@ -14,10 +14,14 @@ public class BaseEntity implements Serializable{
         this.id = id;
     }
 
-    public BaseEntity(Integer id) {
-        this.id = id;
+    BaseEntity() {
     }
 
-    public BaseEntity() {
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "id=" + id +
+                '}';
     }
 }

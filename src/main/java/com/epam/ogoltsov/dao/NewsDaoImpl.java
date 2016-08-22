@@ -14,16 +14,23 @@ import java.util.List;
 class NewsDaoImpl implements Dao<News> {
 
 
-    private static final String INSERT_NEWS = "INSERT INTO NEWS_MANAGMENT (TITLE, BRIEF, CONTENT, NEWS_DATE)  VALUES (?,?,?,TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'))";
-    private static final String FIND_BY_ID = "SELECT * FROM NEWS_MANAGMENT WHERE ID = ?";
-    private static final String SELECT_ALL = "SELECT  * FROM NEWS_MANAGMENT ORDER BY NEWS_DATE";
-    private static final String UPDATE_NEWS = "UPDATE NEWS_MANAGMENT SET TITLE = ?, BRIEF = ?, CONTENT = ?, NEWS_DATE = TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS')  WHERE ID = ?";
-    private static final String DELETE_NEWS = "DELETE FROM NEWS_MANAGMENT WHERE ID = ?";
+    private static final String INSERT_NEWS = "INSERT INTO NEWS_MANAGEMENT (TITLE, BRIEF, CONTENT, NEWS_DATE)  VALUES (?,?,?,TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'))";
+    private static final String FIND_BY_ID = "SELECT * FROM NEWS_MANAGEMENT WHERE ID = ?";
+    private static final String SELECT_ALL = "SELECT  * FROM NEWS_MANAGEMENT ORDER BY NEWS_DATE";
+    private static final String UPDATE_NEWS = "UPDATE NEWS_MANAGEMENT SET TITLE = ?, BRIEF = ?, CONTENT = ?, NEWS_DATE = TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS')  WHERE ID = ?";
+    private static final String DELETE_NEWS = "DELETE FROM NEWS_MANAGEMENT WHERE ID = ?";
+    private static final String DATE_PATTERN = "yyyy-MM-dd HH:MM:ss";
+
+    private static final String ID = "id";
+    private static final String TITLE = "title";
+    private static final String BRIEF = "brief";
+    private static final String DATE = "news_date";
+    private static final String CONTENT = "content";
 
     @Override
     public News insert(News news) throws DaoException {
         try (Connection connection = DBConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(INSERT_NEWS, new String[]{"id"})) {
+             PreparedStatement ps = connection.prepareStatement(INSERT_NEWS, new String[]{ID})) {
             setObjectsToPreparedStatementExceptId(ps, news);
             ps.execute();
 
@@ -36,7 +43,6 @@ class NewsDaoImpl implements Dao<News> {
     }
 
     private int getIdFromResultSet(ResultSet rs) throws SQLException {
-
         rs.next();
         return rs.getInt(1);
     }
@@ -50,7 +56,7 @@ class NewsDaoImpl implements Dao<News> {
 
     private String getDateFromObject(News news) {
         return LocalDateTime.of(news.getDate(),
-                LocalTime.now()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:ss"));
+                LocalTime.now()).format(DateTimeFormatter.ofPattern(DATE_PATTERN));
     }
 
     @Override
@@ -71,11 +77,11 @@ class NewsDaoImpl implements Dao<News> {
     private News getObjectFromResultSet(ResultSet rs) throws SQLException {
         News news = new News();
 
-        news.setId(rs.getInt("id"));
-        news.setTitle(rs.getString("title"));
-        news.setBrief(rs.getString("brief"));
-        news.setDate(LocalDate.from(rs.getTimestamp("news_date").toLocalDateTime()));
-        news.setContent(rs.getString("content"));
+        news.setId(rs.getInt(ID));
+        news.setTitle(rs.getString(TITLE));
+        news.setBrief(rs.getString(BRIEF));
+        news.setDate(LocalDate.from(rs.getTimestamp(DATE).toLocalDateTime()));
+        news.setContent(rs.getString(CONTENT));
 
         return news;
     }

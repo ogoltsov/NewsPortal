@@ -35,6 +35,5 @@ public class DeleteNewsForm extends ActionForm {
             errors.add("error.news.delete", new ActionMessage("error.news.delete.count"));
         }
         return errors;
-
     }
 }

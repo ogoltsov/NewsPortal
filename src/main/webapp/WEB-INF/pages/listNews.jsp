@@ -37,7 +37,7 @@
         <html:form action="/delete?method=delete">
             <logic:iterate name="newsForm" property="newsList" id="news">
                 <div class="news">
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
                         <div class="title">
                             <p class="text-justify">
                                 <b>
@@ -51,7 +51,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                         <div class="newsMenu">
                             <div class="newsDate">
                                 <p><bean:write name="news" property="date"/></p>
@@ -62,9 +62,9 @@
                     <div class="newsActions">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"></div>
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9"></div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                                         <html:link action="/news?method=showViewNews&id=${news.id}">
                                             <bean:message key="news.action.view"/>
                                         </html:link>
@@ -77,7 +77,6 @@
                                     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                         <html:multibox property="itemsToDelete" value="${news.id}"/>
                                     </div>
-                                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2"></div>
                                 </div>
                             </div>
                         </div>
