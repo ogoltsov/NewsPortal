@@ -11,8 +11,14 @@
 </style>
 <ol class="breadcrumb">
     <li>Home</li>
-    <li><a href="${pageContext.request.contextPath}/news.do?method=listNews">News</a></li>
-    <li class="active">New news</li>
+    <li>
+        <a href="${pageContext.request.contextPath}/news.do?method=listNews">
+            <bean:message key="news.list.title.news"/>
+        </a>
+    </li>
+    <li class="active">
+        <bean:message key="news.list.title.newNews"/>
+    </li>
 </ol>
 <div class="errors">
     <html:errors/>

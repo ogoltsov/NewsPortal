@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
 public class DBConnectionPool {
 
     private static final String GET_CONNECTION_EXCEPTION = "Can't getting connection from CP";

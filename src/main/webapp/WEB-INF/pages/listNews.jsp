@@ -30,7 +30,7 @@
 <div>
     <ol class="breadcrumb">
         <li>Home</li>
-        <li class="active">News list</li>
+        <li class="active"><bean:message key="news.list.title.news"/></li>
     </ol>
 
     <div class="newsList">

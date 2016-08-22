@@ -12,14 +12,18 @@
     <bean:define id="newsItem" name="newsForm" property="news"/>
     <ol class="breadcrumb">
         <li>Home</li>
-        <li><a href="${pageContext.request.contextPath}/news.do?method=listNews">News</a></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/news.do?method=listNews">
+                <bean:message key="news.list.title.news"/>
+            </a>
+        </li>
         <li class="active"><bean:write name="newsItem" property="title"/></li>
     </ol>
     <div class="container-fluid news">
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <p class="text-center">
-                    Title:
+                    <bean:message key="news.edit.title"/>
                 </p>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -31,7 +35,7 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <p class="text-center">
-                    Brief:
+                    <bean:message key="news.edit.brief"/>
                 </p>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -43,7 +47,7 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <p class="text-center">
-                    Date:
+                    <bean:message key="news.edit.date"/>
                 </p>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -55,7 +59,7 @@
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <p class="text-center">
-                    Content:
+                    <bean:message key="news.edit.content"/>
                 </p>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
@@ -67,22 +71,22 @@
     </div>
     <div class="row">
         <div class="container">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3
-                            col-xs-offset-9 col-sm-offset-9 col-md-offset-9 col-lg-offset-9">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4
+                            col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
                 <div class="btn-group">
                     <html:link action="/news?method=listNews">
                         <button type="button" class="btn btn-default">
-                            Back
+                            <bean:message key="news.action.back"/>
                         </button>
                     </html:link>
                     <html:link action="/news?method=showEditNews&id=${newsItem.id}">
                         <button type="button" class="btn btn-default">
-                            Edit
+                            <bean:message key="news.action.edit"/>
                         </button>
                     </html:link>
                     <html:link action="/delete">
                         <button type="button" class="btn btn-danger">
-                            Delete!
+                            <bean:message key="news.action.delete"/>
                         </button>
                         <html:param name="itemsToDelete" value="${newsItem.id}"/>
                     </html:link>

@@ -12,7 +12,7 @@ public class DeleteNewsForm extends ActionForm {
     private String[] itemsToDelete;
 
     public DeleteNewsForm() {
-        this.itemsToDelete=null;
+        this.itemsToDelete = null;
     }
 
     public String[] getItemsToDelete() {
@@ -26,7 +26,7 @@ public class DeleteNewsForm extends ActionForm {
     @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = null;
-        if ((itemsToDelete==null)||(itemsToDelete.length==0)){
+        if ((itemsToDelete == null) || (itemsToDelete.length == 0)) {
             errors = new ActionErrors();
             errors.add("error.news.delete", new ActionMessage("error.news.delete.count"));
         }

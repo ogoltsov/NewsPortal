@@ -7,9 +7,13 @@
 <bean:define id="news1" name="newsForm" property="news"/>
 <ol class="breadcrumb">
     <li>Home</li>
-    <li><a href="${pageContext.request.contextPath}/news.do?method=listNews">News</a></li>
+    <li>
+        <a href="${pageContext.request.contextPath}/news.do?method=listNews">
+            <bean:message key="news.list.title.news"/>
+        </a>
+    </li>
     <li><a href="${pageContext.request.contextPath}/news.do?method=showViewNews&id=${news1.id}">${news1.title}</a></li>
-    <li class="active">Edit</li>
+    <li class="active"><bean:message key="news.list.title.edit"/></li>
 </ol>
 <style>
     div.errors {
@@ -26,8 +30,8 @@
     <jsp:include page="/WEB-INF/pages/tiles/editFields.jsp"/>
     <div class="row">
         <div class="container">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3
-                            col-xs-offset-9 col-sm-offset-9 col-md-offset-9 col-lg-offset-9">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4
+                            col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
                 <div class="btn-group">
                     <html:link action="/news?method=listNews">
                         <html:submit styleClass="btn btn-success" >
