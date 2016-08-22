@@ -37,7 +37,7 @@ public class DBConnectionPool {
             try {
                 initContext = new InitialContext();
                 Context envContext = (Context) initContext.lookup("java:/comp/env");
-                datasource = (DataSource) envContext.lookup("jdbc/TestDB");
+                datasource = (DataSource) envContext.lookup("jdbc/myoracle");
             } catch (NamingException e) {
                 throw new DBConnectionPoolException(CONNECTION_POOL_EXCEPTION, e);
             }

@@ -21,7 +21,7 @@
     </li>
 </ol>
 <div class="errors">
-    <html:errors/>
+    <html:errors />
 </div>
 <html:form action="/newNews?method=addNews">
 
@@ -55,7 +55,8 @@
     </div>
     <div class="form-group">
         <label for="InputDate"><bean:message key="news.edit.date"/>:</label>
-        <html:text styleId="InputDate" styleClass="form-control" name="newsForm" property="date" value="${newsForm.date}" maxlength="10"/>
+        <html:text styleId="InputDate" styleClass="form-control" name="newsForm" property="date"
+                   value="${newsForm.date}" maxlength="10"/>
     </div>
     <div class="form-group">
         <label for="InputContent"><bean:message key="news.edit.content"/>:</label>

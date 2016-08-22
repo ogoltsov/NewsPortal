@@ -14,16 +14,16 @@ import java.util.List;
 class NewsDaoImpl implements Dao<News> {
 
 
-    private static final String INSERT_NEWS = "INSERT INTO news (title, brief, content, DATE)  VALUES (?,?,?,?)";
-    private static final String FIND_BY_ID = "SELECT * FROM news WHERE id = ?";
-    private static final String SELECT_ALL = "SELECT  * FROM news ORDER BY DATE";
-    private static final String UPDATE_NEWS = "UPDATE news SET title = ?, brief = ?, content = ?, DATE = ?  WHERE id = ?;";
-    private static final String DELETE_NEWS = "DELETE FROM news WHERE id = ?";
+    private static final String INSERT_NEWS = "INSERT INTO NEWS_MANAGMENT (TITLE, BRIEF, CONTENT, NEWS_DATE)  VALUES (?,?,?,TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'))";
+    private static final String FIND_BY_ID = "SELECT * FROM NEWS_MANAGMENT WHERE ID = ?";
+    private static final String SELECT_ALL = "SELECT  * FROM NEWS_MANAGMENT ORDER BY NEWS_DATE";
+    private static final String UPDATE_NEWS = "UPDATE NEWS_MANAGMENT SET TITLE = ?, BRIEF = ?, CONTENT = ?, NEWS_DATE = TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS')  WHERE ID = ?";
+    private static final String DELETE_NEWS = "DELETE FROM NEWS_MANAGMENT WHERE ID = ?";
 
     @Override
     public News insert(News news) throws DaoException {
         try (Connection connection = DBConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(INSERT_NEWS, PreparedStatement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement ps = connection.prepareStatement(INSERT_NEWS, new String[]{"id"})) {
             setObjectsToPreparedStatementExceptId(ps, news);
             ps.execute();
 
@@ -74,7 +74,7 @@ class NewsDaoImpl implements Dao<News> {
         news.setId(rs.getInt("id"));
         news.setTitle(rs.getString("title"));
         news.setBrief(rs.getString("brief"));
-        news.setDate(LocalDate.from(rs.getTimestamp("date").toLocalDateTime()));
+        news.setDate(LocalDate.from(rs.getTimestamp("news_date").toLocalDateTime()));
         news.setContent(rs.getString("content"));
 
         return news;

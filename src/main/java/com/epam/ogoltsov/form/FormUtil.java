@@ -10,11 +10,11 @@ class FormUtil {
 
     static ActionErrors validateFields(String title, String brief, String content, String date) {
         ActionErrors errors = new ActionErrors();
-        if (!(title.length() <= 100))
+        if (!((title.length() <= 100) && (title.length() > 0)))
             errors.add("news.title.err", new ActionMessage("error.news.title.length"));
-        if (!(brief.length() <= 500))
+        if (!((brief.length() <= 500) && (brief.length() > 0)))
             errors.add("news.brief.err", new ActionMessage("error.news.brief.length"));
-        if (!(content.length() <= 2048))
+        if (!((content.length() <= 2048) && (content.length() > 0)))
             errors.add("news.content.err", new ActionMessage("error.news.content.length"));
         if (!isValid(DATE_PATTERN, date))
             errors.add("news.date.err", new ActionMessage("error.news.date.format"));

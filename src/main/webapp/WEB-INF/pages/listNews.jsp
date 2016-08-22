@@ -86,8 +86,8 @@
             </logic:iterate>
             <div class="container deleteButton">
                     <div class="errors"><html:errors/></div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1
-                            col-xs-offset-11 col-sm-offset-11 col-md-offset-11 col-lg-offset-11">
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-1
+                            col-xs-offset-9 col-sm-offset-9 col-md-offset-10 col-lg-offset-11">
                     <button type="submit" class="btn btn-danger" >
                         <bean:message key="news.action.delete"/>
                     </button>
