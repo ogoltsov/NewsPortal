@@ -1,14 +1,16 @@
 package com.epam.ogoltsov.service;
 
-import com.epam.ogoltsov.dao.DaoException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ServiceException extends Exception {
 
-    ServiceException(String s) {
-        super(s);
-    }
+    private static final Logger log = LoggerFactory.getLogger(ServiceException.class);
+    private static final String EXCEPTION_TITLE = "DBConnectionPool exception: ";
 
-    ServiceException(String s, Exception e) {
-        super(s, e);
+    ServiceException(String message, Exception exception) {
+        super(message, exception);
+        log.debug(EXCEPTION_TITLE +"message: " + message+ " exception: "+ exception);
     }
 }

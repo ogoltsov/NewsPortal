@@ -20,11 +20,23 @@ import java.time.format.DateTimeFormatter;
 
 public class NewsActions extends DispatchAction {
     private static final Logger log = LoggerFactory.getLogger(NewsActions.class);
+    private static final String NEWS_SERVICE_BEAN = "newsService";
+    private static final String FORWARD_LIST_NEWS = "listNews";
+    private static final String GET_ALL_NEWS = "Get list of all news";
+    private static final String VIEW_NEWS = "Views News: ";
+    private static final String FORWARD_VIEW_NEWS = "showViewNews";
+    private static final String SHOW_NEWS_FOR_EDIT = "Show news for edit: ";
+    private static final String FORWARD_EDIT_NEWS = "showEditNews";
+    private static final String DATE_PATTERN = "yyyy-MM-dd";
+    private static final String EDIT_NEWS = "News was changed";
+    private static final String ACTION_INIT = "NewsAction init";
+
 
     private IService<News> service;
 
     public NewsActions() {
-        service = SpringContextSingleton.getContext().getBean("newsService", NewsService.class);
+        log.debug(ACTION_INIT);
+        service = SpringContextSingleton.getContext().getBean(NEWS_SERVICE_BEAN, NewsService.class);
     }
 
     public NewsActions(IService<News> service) {
@@ -33,26 +45,26 @@ public class NewsActions extends DispatchAction {
 
     public ActionForward listNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                   HttpServletResponse response) throws Exception {
-        log.debug("listNews()...");
+        log.debug(GET_ALL_NEWS);
         NewsForm newsForm = (NewsForm) form;
         newsForm.setNewsList(service.findAll());
-        return mapping.findForward("listNews");
+        return mapping.findForward(FORWARD_LIST_NEWS);
     }
 
     public ActionForward showViewNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
 
-        log.debug("viewNews()...");
         NewsForm newsForm = (NewsForm) form;
         News news = service.findById(Integer.valueOf(newsForm.getId()));
         newsForm.setNews(news);
-        return mapping.findForward("showViewNews");
+
+        log.debug(VIEW_NEWS + news);
+        return mapping.findForward(FORWARD_VIEW_NEWS);
     }
 
     public ActionForward showEditNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
 
-        log.debug("editViewNews()...");
         NewsForm newsForm = (NewsForm) form;
 
         News news = service.findById(Integer.valueOf(newsForm.getId()));
@@ -64,7 +76,9 @@ public class NewsActions extends DispatchAction {
 
         newsForm.setNews(news);
         newsForm.setId(String.valueOf(news.getId()));
-        return mapping.findForward("showEditNews");
+
+        log.debug(SHOW_NEWS_FOR_EDIT + news);
+        return mapping.findForward(FORWARD_EDIT_NEWS);
     }
 
     public ActionForward editNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -77,12 +91,12 @@ public class NewsActions extends DispatchAction {
         else news.setId(null);
         news.setTitle(newsForm.getTitle());
         news.setDate(LocalDate.parse(newsForm.getDate(),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                DateTimeFormatter.ofPattern(DATE_PATTERN)));
         news.setBrief(newsForm.getBrief());
         news.setContent(newsForm.getContent());
         newsForm.setNews(news);
-
+        log.debug(EDIT_NEWS);
         service.save(news);
-        return mapping.findForward("showViewNews");
+        return mapping.findForward(FORWARD_VIEW_NEWS);
     }
 }

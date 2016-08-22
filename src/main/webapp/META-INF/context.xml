@@ -17,7 +17,7 @@
               type="javax.sql.DataSource"
               maxTotal="30"
               maxIdle="10"
-              minIdle="5"
+              minIdle="3"
               maxWaitMillis="8000"
               username="root"
               password="Ogoltsov"

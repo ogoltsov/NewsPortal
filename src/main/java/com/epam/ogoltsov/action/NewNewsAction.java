@@ -10,6 +10,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,10 +20,20 @@ import java.time.format.DateTimeFormatter;
 
 public class NewNewsAction extends DispatchAction {
 
+    private static final Logger log = LoggerFactory.getLogger(NewNewsForm.class);
+    private static final String NEWS_SERVICE_BEAN = "newsService";
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
+    private static final String FORWARD_SHOW_ADD_NEWS_PAGE = "showAddNews";
+    private static final String SHOW_ADD_NEWS_PAGE = "Show add new news page";
+    private static final String ADD_NEW_NEWS = "Add new news: ";
+    private static final String FORWARD_MAIN_PAGE = "mainPage";
+    private static final String ACTION_INIT = "NewNewsAction init";
+
     private IService<News> service;
 
     public NewNewsAction() {
-        service = SpringContextSingleton.getContext().getBean("newsService", NewsService.class);
+        log.debug(ACTION_INIT);
+        service = SpringContextSingleton.getContext().getBean(NEWS_SERVICE_BEAN, NewsService.class);
     }
 
     public ActionForward addViewNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -31,9 +43,9 @@ public class NewNewsAction extends DispatchAction {
         newsForm.setTitle(null);
         newsForm.setBrief(null);
         newsForm.setContent(null);
-        newsForm.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
-        return mapping.findForward("showAddNews");
+        newsForm.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+        log.debug(SHOW_ADD_NEWS_PAGE);
+        return mapping.findForward(FORWARD_SHOW_ADD_NEWS_PAGE);
     }
 
     public ActionForward addNews(ActionMapping mapping, ActionForm form, HttpServletRequest request,
@@ -44,9 +56,9 @@ public class NewNewsAction extends DispatchAction {
         news.setBrief(newsForm.getBrief());
         news.setContent(newsForm.getContent());
         news.setDate(LocalDate.parse(newsForm.getDate(),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                DateTimeFormatter.ofPattern(DATE_FORMAT)));
         service.insert(news);
-
-        return mapping.findForward("mainPage");
+        log.debug(ADD_NEW_NEWS + news);
+        return mapping.findForward(FORWARD_MAIN_PAGE);
     }
 }
