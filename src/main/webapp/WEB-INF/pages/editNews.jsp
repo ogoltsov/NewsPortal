@@ -16,15 +16,10 @@
     <li class="active"><bean:message key="news.list.title.edit"/></li>
 </ol>
 <style>
-    div.errors {
+    div.error {
         color: red;
     }
 </style>
-<div class="errors">
-    <html:errors/>
-</div>
-
-
 <html:form action="/news?method=editNews">
     <html:hidden name="newsForm" property="id" value="${news1.id}"/>
     <jsp:include page="/WEB-INF/pages/tiles/editFields.jsp"/>

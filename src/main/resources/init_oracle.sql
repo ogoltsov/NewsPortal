@@ -7,13 +7,13 @@ CREATE TABLE NEWS_MANAGEMENT (
   CONSTRAINT news_pk PRIMARY KEY (id)
 );
 
-create sequence news_id_seq start with 1 increment by 1;
+create sequence news_management_id_seq start with 1 increment by 1;
 
-create or replace trigger example_insert
+create or replace trigger news_management_insert
 before insert on NEWS_MANAGEMENT
 for each row
   begin
-    select news_id_seq.nextval into :new.id from dual;
+    select news_management_id_seq.nextval into :new.id from dual;
   end;
 
 INSERT INTO NEWS_MANAGEMENT (title, brief, content, news_date)
