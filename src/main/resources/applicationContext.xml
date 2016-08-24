@@ -4,12 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="newsDao" class="com.epam.ogoltsov.dao.NewsDaoImpl"/>
+    <bean id="newsDao" class="com.epam.ogoltsov.dao.NewsDaoImpl">
+        <property name="entityManager" ref=""/>
+    </bean>
 
     <bean id="newsService" class="com.epam.ogoltsov.service.NewsService">
         <constructor-arg name="newsDao" ref="newsDao"/>
     </bean>
 
      <bean name="news" class="com.epam.ogoltsov.model.News"/>
+
+    <!--<bean id="entity-manager" class=""-->
 
 </beans>
