@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping">
+        <!--"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">-->
+
+<hibernate-mapping>
+    <class name="com.epam.ogoltsov.model.News" table="SYSTEM.NEWS">
+        <id column="ID" name="id" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property name="title" type="string" >
+            <column name="TITLE" length="100" not-null="true"/>
+        </property>
+        <property name="brief" type="string">
+            <column name="BRIEF" length="500" not-null="true"/>
+        </property>
+        <property name="content" type="string">
+            <column name="CONTENT" length="2050" not-null="true"/>
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="NEWS_DATE" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

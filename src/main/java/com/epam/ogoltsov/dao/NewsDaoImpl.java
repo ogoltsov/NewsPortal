@@ -2,6 +2,7 @@ package com.epam.ogoltsov.dao;
 
 import com.epam.ogoltsov.model.News;
 import com.epam.ogoltsov.pool.DBConnectionPool;
+import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import java.sql.*;
@@ -14,14 +15,10 @@ import java.util.List;
 
 class NewsDaoImpl implements Dao<News> {
 
-    private EntityManager entityManager;
+    private Session session;
 
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
-
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public Session getSession() {
+        return session;
     }
 
     private static final String DATE_PATTERN = "yyyy-MM-dd HH:MM:ss";
@@ -34,7 +31,7 @@ class NewsDaoImpl implements Dao<News> {
 
     @Override
     public News insert(News news) throws DaoException {
-        return entityManager.merge(news);
+        return null;
 
     }
 
@@ -52,7 +49,7 @@ class NewsDaoImpl implements Dao<News> {
 
     @Override
     public News findById(int id) throws DaoException {
-        return entityManager.find(News.class, id);
+        return session.get(News.class, id);
     }
 
     private News getObjectFromResultSet(ResultSet rs) throws SQLException {

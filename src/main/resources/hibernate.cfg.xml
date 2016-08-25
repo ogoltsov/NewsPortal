@@ -8,9 +8,10 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/java?useSSL=false</property>
-        <property name="connection.username">hiber</property>
-        <property name="connection.password">BeLionKing1209!</property>
+        <property name="connection.url">jdbc:oracle:thin:@//localhost:1521/XE</property>
+        <property name="connection.username">system</property>
+        <property name="connection.password">Ogoltsov</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="hibernate.c3p0.min_size">10</property>
@@ -20,13 +21,15 @@
 
 
         <!-- Select our SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.Oracle12cDialect</property>
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
 
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
 
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
+
+        <mapping resource="hibernate/news.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
