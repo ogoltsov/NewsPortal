@@ -1,13 +1,14 @@
 package com.epam.ogoltsov.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class News extends BaseEntity {
 
     private String title;
     private String brief;
     private String content;
-    private LocalDate date;
+    private Date date;
 
     public News() {
     }
@@ -46,11 +47,11 @@ public class News extends BaseEntity {
         this.content = content;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

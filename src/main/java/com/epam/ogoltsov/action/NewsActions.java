@@ -14,9 +14,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NewsActions extends DispatchAction {
     private static final Logger log = LoggerFactory.getLogger(NewsActions.class);
@@ -72,8 +71,10 @@ public class NewsActions extends DispatchAction {
         newsForm.setTitle(news.getTitle());
         newsForm.setBrief(news.getBrief());
         newsForm.setContent(news.getContent());
-        newsForm.setDate(news.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
+//        newsForm.setDate(news.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String format = formatter.format(news.getDate());
+        newsForm.setDate(format);
         newsForm.setNews(news);
         newsForm.setId(String.valueOf(news.getId()));
 
@@ -90,8 +91,9 @@ public class NewsActions extends DispatchAction {
             news.setId(Integer.parseInt(newsForm.getId()));
         else news.setId(null);
         news.setTitle(newsForm.getTitle());
-        news.setDate(LocalDate.parse(newsForm.getDate(),
-                DateTimeFormatter.ofPattern(DATE_PATTERN)));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date parse = dateFormat.parse(newsForm.getDate());
+        news.setDate(parse);
         news.setBrief(newsForm.getBrief());
         news.setContent(newsForm.getContent());
         newsForm.setNews(news);

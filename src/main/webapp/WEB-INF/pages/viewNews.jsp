@@ -52,7 +52,7 @@
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                 <p class="text-justify">
-                    <bean:write name="newsItem" property="date"/>
+                    <bean:write name="newsItem" property="date" format="yyy-MM-dd"/>
                 </p>
             </div>
         </div>

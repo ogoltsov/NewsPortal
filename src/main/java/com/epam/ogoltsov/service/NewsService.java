@@ -56,16 +56,12 @@ public class NewsService implements IService<News> {
 
     @Override
     public void save(News news) throws ServiceException {
+
         try {
-            if (news.getId() != null) {
-                newsDao.update(news);
-                log.debug(SERVICE_SAVE_NEWS + news);
-            } else {
-                log.debug(SERVICE_SAVE_EXCEPTION);
-                throw new DaoException(SERVICE_SAVE_EXCEPTION);
-            }
+            newsDao.update(news);
+            log.debug(SERVICE_SAVE_NEWS + news);
         } catch (DaoException e) {
-            throw new ServiceException(SAVE_EXCEPTION, e);
+            log.debug(SAVE_EXCEPTION);
         }
     }
 
@@ -85,7 +81,7 @@ public class NewsService implements IService<News> {
     public News insert(News news) throws ServiceException {
         News newNews;
         try {
-            log.debug(SERVICE_INSERT + news );
+            log.debug(SERVICE_INSERT + news);
             newNews = newsDao.insert(news);
         } catch (DaoException e) {
             log.error(SERVICE_INSERT_EXCEPTION + news);

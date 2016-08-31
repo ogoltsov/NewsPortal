@@ -15,8 +15,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class NewNewsAction extends DispatchAction {
 
@@ -55,9 +57,12 @@ public class NewNewsAction extends DispatchAction {
         news.setTitle(newsForm.getTitle());
         news.setBrief(newsForm.getBrief());
         news.setContent(newsForm.getContent());
-        news.setDate(LocalDate.parse(newsForm.getDate(),
-                DateTimeFormatter.ofPattern(DATE_FORMAT)));
-        service.insert(news);
+//        news.setDate(LocalDate.parse(newsForm.getDate(),
+//                DateTimeFormatter.ofPattern(DATE_FORMAT)));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date parse = dateFormat.parse(newsForm.getDate());
+        news.setDate(parse);
+        service.save(news);
         log.debug(ADD_NEW_NEWS + news);
         return mapping.findForward(FORWARD_MAIN_PAGE);
     }

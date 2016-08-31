@@ -54,7 +54,7 @@
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                         <div class="newsMenu">
                             <div class="newsDate">
-                                <p><bean:write name="news" property="date"/></p>
+                                <p><bean:write name="news" property="date" format="yyyy-MM-dd"/></p>
                             </div>
                         </div>
                     </div>

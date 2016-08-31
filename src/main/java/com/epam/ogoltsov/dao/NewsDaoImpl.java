@@ -2,10 +2,13 @@ package com.epam.ogoltsov.dao;
 
 import com.epam.ogoltsov.model.News;
 import com.epam.ogoltsov.pool.DBConnectionPool;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.persistence.EntityManager;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -15,10 +18,10 @@ import java.util.List;
 
 class NewsDaoImpl implements Dao<News> {
 
-    private Session session;
+    private SessionFactory sessionFactory;
 
-    public Session getSession() {
-        return session;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     private static final String DATE_PATTERN = "yyyy-MM-dd HH:MM:ss";
@@ -31,56 +34,47 @@ class NewsDaoImpl implements Dao<News> {
 
     @Override
     public News insert(News news) throws DaoException {
+
+
         return null;
 
     }
 
-    private void setObjectsToPreparedStatementExceptId(PreparedStatement ps, News news) throws SQLException {
-        ps.setString(1, news.getTitle());
-        ps.setString(2, news.getBrief());
-        ps.setString(3, news.getContent());
-        ps.setString(4, getDateFromObject(news));
-    }
-
-    private String getDateFromObject(News news) {
-        return LocalDateTime.of(news.getDate(),
-                LocalTime.now()).format(DateTimeFormatter.ofPattern(DATE_PATTERN));
-    }
-
     @Override
     public News findById(int id) throws DaoException {
-        return session.get(News.class, id);
-    }
-
-    private News getObjectFromResultSet(ResultSet rs) throws SQLException {
-        News news = new News();
-
-        news.setId(rs.getInt(ID));
-        news.setTitle(rs.getString(TITLE));
-        news.setBrief(rs.getString(BRIEF));
-        news.setDate(LocalDate.from(rs.getTimestamp(DATE).toLocalDateTime()));
-        news.setContent(rs.getString(CONTENT));
-
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.beginTransaction();
+        News news = currentSession.get(News.class, id);
+        currentSession.getTransaction().commit();
         return news;
     }
 
     @Override
     public List<News> findAll() throws DaoException {
-        return null;
-    }
-
-    private void setObjectsToPreparedStatement(PreparedStatement ps, News news) throws SQLException {
-        setObjectsToPreparedStatementExceptId(ps, news);
-        ps.setInt(5, news.getId());
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.beginTransaction();
+        List list = sessionFactory.getCurrentSession()
+                .createCriteria(News.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
+        currentSession.getTransaction().commit();
+        return list;
     }
 
     @Override
     public void update(News news) throws DaoException {
-
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.beginTransaction();
+        currentSession.saveOrUpdate(news);
+        currentSession.getTransaction().commit();
     }
 
     @Override
     public void delete(int id) throws DaoException {
-
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.beginTransaction();
+        News news = currentSession.get(News.class, id);
+        currentSession.delete(news);
+        currentSession.getTransaction().commit();
     }
 }
