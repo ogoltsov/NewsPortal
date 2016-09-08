@@ -10,7 +10,8 @@
         <property name="connection.pool_size">10</property>
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <mapping resource="News.hbm.xml"/>
+        <!--<mapping resource="News.hbm.xml"/>-->
+        <mapping class="com.epam.ogoltsov.model.News"/>
     </session-factory>
 
 </hibernate-configuration>

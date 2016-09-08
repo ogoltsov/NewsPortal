@@ -1,26 +1,41 @@
 package com.epam.ogoltsov.model;
 
-import java.time.LocalDate;
+import org.hibernate.annotations.GeneratorType;
+
+import javax.persistence.*;
 import java.util.Date;
 
-public class News extends BaseEntity {
+@Entity
+@Table(name = "NEWS")
+public class News {
 
+    @Id
+    @Column(name = "ID", nullable = false, unique = true)
+    @SequenceGenerator(name = "id_seq", sequenceName = "user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
+    private Integer id;
+
+    @Column(name = "TITLE", nullable = false, unique = true, length = 100)
     private String title;
+
+    @Column(name = "BRIEF", nullable = false, unique = true, length = 500)
     private String brief;
+
+    @Column(name = "CONTENT", nullable = false, unique = true, length = 2050)
     private String content;
+
+    @Column(name = "NEWS_DATE", nullable = false)
     private Date date;
 
     public News() {
     }
 
-    @Override
     public Integer getId() {
-        return super.getId();
+        return id;
     }
 
-    @Override
     public void setId(Integer id) {
-        super.setId(id);
+        this.id = id;
     }
 
     public String getTitle() {
@@ -82,7 +97,7 @@ public class News extends BaseEntity {
     @Override
     public String toString() {
         return "News{" +
-                "id=" + super.getId() +
+                "id=" + id +
                 "title='" + title + '\'' +
                 ", brief='" + brief + '\'' +
                 ", content='" + content + '\'' +

@@ -31,7 +31,7 @@
         <constructor-arg name="newsDao" ref="newsDao"/>
     </bean>
 
-     <bean name="news" class="com.epam.ogoltsov.model.News"/>
+     <bean name="news" class="com.epam.ogoltsov.model.News" scope="prototype"/>
 
     <!--<bean id="entity-manager" class=""-->
 
