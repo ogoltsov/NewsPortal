@@ -1,9 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
-<%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
-<%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
-<%@taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <title><tiles:insertAttribute name="title" /></title>
     <!-- Bootstrap CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
     <script src=${pageContext.request.contextPath}/js/jquery.min.js"></script>
@@ -27,15 +24,15 @@
 </style>
 <div class="container-fluid">
     <div class="row">
-        <tiles:insert attribute="header"/>
+        <tiles:insertAttribute name="header"/>
     </div>
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
-            <tiles:insert attribute="menu"/>
+            <tiles:insertAttribute name="menu"/>
         </div>
         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-10">
             <div class="workspace">
-                <tiles:insert attribute="body"/>
+                <tiles:insertAttribute name="body"/>
             </div>
         </div>
     </div>

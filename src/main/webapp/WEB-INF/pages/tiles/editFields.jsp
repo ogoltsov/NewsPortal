@@ -1,7 +1,4 @@
-<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
-<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
-<%@ taglib prefix="logic" uri="http://struts.apache.org/tags-logic" %>
-<bean:define id="newsForm" name="newsForm"/>
+
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>

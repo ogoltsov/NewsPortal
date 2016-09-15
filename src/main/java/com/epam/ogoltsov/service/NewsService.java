@@ -5,6 +5,7 @@ import com.epam.ogoltsov.dao.DaoException;
 import com.epam.ogoltsov.model.News;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,10 +29,20 @@ public class NewsService implements IService<News> {
     private static final String SERVICE_INSERT = "Insert new news: ";
     private static final String SERVICE_INSERT_EXCEPTION = "Can't save news: ";
 
+
     private Dao<News> newsDao;
 
+    public void setNewsDao(Dao<News> newsDao) {
+        this.newsDao = newsDao;
+    }
+
+    @Autowired
     public NewsService(Dao<News> newsDao) {
         this.newsDao = newsDao;
+    }
+
+    public NewsService() {
+
     }
 
     @Override

@@ -13,7 +13,7 @@ public final class SpringContextSingleton {
 
 
     private SpringContextSingleton() {
-        context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        context = new ClassPathXmlApplicationContext("WEB-INF/applicationContext.xml");
         log.debug(SPRING_CONTEXT_INIT);
     }
 

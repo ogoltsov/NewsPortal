@@ -25,27 +25,27 @@
 
     <action-mappings>
         <action path="/news"
-                type="com.epam.ogoltsov.action.NewsActions"
+                type="com.epam.ogoltsov.action.struts.NewsActions"
                 parameter="method"
                 name="newsForm"
                 validate="true"
                 input="showEditNews"/>
 
         <action path="/delete"
-                type="com.epam.ogoltsov.action.DeleteNewsAction"
+                type="com.epam.ogoltsov.action.struts.DeleteNewsAction"
                 name="deleteNewsForm"
                 validate="true"
                 input="listNews"/>
 
         <action path="/newNews"
-                type="com.epam.ogoltsov.action.NewNewsAction"
+                type="com.epam.ogoltsov.action.struts.NewNewsAction"
                 parameter="method"
                 name="newNewsForm"
                 validate="true"
                 input="showAddNews"/>
 
         <action path="/Locale"
-                type="com.epam.ogoltsov.action.LanguageSelectAction"
+                type="com.epam.ogoltsov.action.struts.LanguageSelectAction"
                 parameter="method"/>
     </action-mappings>
 
