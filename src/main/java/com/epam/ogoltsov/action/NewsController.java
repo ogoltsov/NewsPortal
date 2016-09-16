@@ -9,18 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class NewsController {
-
-
     private NewsService newsService;
 
     public NewsController() {
-        System.out.println("SHIT!");
+
     }
 
     @Autowired
@@ -30,7 +29,6 @@ public class NewsController {
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String homePage(Model model) {
-
         List<News> newsList;
         try {
             newsList = newsService.findAll();
@@ -40,5 +38,12 @@ public class NewsController {
         }
         return "homePage";
     }
+
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String remoteNews(Model model, @RequestParam(value = "itemsToDelete") String[] itemsToDelete) {
+
+        return "";
+    }
+
 
 }

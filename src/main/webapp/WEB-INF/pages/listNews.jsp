@@ -23,11 +23,14 @@
         background: -webkit-linear-gradient(left, #ffffff 0%, #f9f9f9 50%, #ffffff 99%);
         background: linear-gradient(to right, #ffffff 0%, #f9f9f9 50%, #ffffff 99%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+        border: 1px solid black;
     }
 
     div.errors {
         color: red;
     }
+
+
 </style>
 <div>
     <ol class="breadcrumb">

@@ -3,12 +3,13 @@
         border-bottom: 1px solid lightgray;
         display: block;
     }
+
     div.buttons {
         padding-top: 15px;
     }
 
 </style>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container-fluid header">
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
         <h2>
@@ -16,31 +17,17 @@
         </h2>
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 buttons">
-        <logic:equal name="org.apache.struts.action.LOCALE" value="ru_RU">
+        <c:if test="${org.apache.struts.action.LOCALE==ru_RU}">
             <html:link page="/Locale.do?method=russian" styleClass=" ">
                 <button type="button" class="btn btn-default active">
-                    <bean:message key="newsPortal.buttons.lang.russian"/>
+                    <bean:message key="newsPortal.buttons.lang.russian"/>RU
                 </button>
             </html:link>
             <html:link page="/Locale.do?method=english" styleClass="">
                 <button type=type"button" class="btn btn-default">
-                    <bean:message key="newsPortal.buttons.lang.english"/>
+                    <bean:message key="newsPortal.buttons.lang.english"/>EN
                 </button>
             </html:link>
-        </logic:equal>
-        <logic:equal name="org.apache.struts.action.LOCALE" value="en_US">
-            <div class="btn-group" role="group" aria-label="...">
-                <html:link page="/Locale.do?method=russian" styleClass=" ">
-                    <button type="button" class="btn btn-default">
-                        <bean:message key="newsPortal.buttons.lang.russian"/>
-                    </button>
-                </html:link>
-                <html:link page="/Locale.do?method=english" styleClass="">
-                    <button type="button" class="btn btn-default active">
-                        <bean:message key="newsPortal.buttons.lang.english"/>
-                    </button>
-                </html:link>
-            </div>
-        </logic:equal>
+        </c:if>
     </div>
 </div>
