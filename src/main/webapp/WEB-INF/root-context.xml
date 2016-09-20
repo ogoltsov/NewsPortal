@@ -50,5 +50,7 @@
         </property>
     </bean>
 
+    <!--i18n-->
+
 
 </beans>

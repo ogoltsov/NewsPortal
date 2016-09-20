@@ -1,7 +1,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
 <style>
     div.actions > div {
         display: inline;
@@ -34,16 +43,17 @@
 
 
 </style>
+<body>
 <div>
     <ol class="breadcrumb">
         <li>Home</li>
         <li class="active">
-            <%--<spring:message code="news.list.title.news"/>--%>
+            <spring:message code="news.list.title.news"/>
         </li>
     </ol>
 
     <div class="newsList">
-        <form:form method="post" modelAttribute="itemsToDelete" action="/delete">
+        <form action="/delete?method=delete">
             <c:forEach items="${newsList}" var="news">
                 <jsp:useBean id="news" class="com.epam.ogoltsov.model.News"/>
                 <div class="news">
@@ -52,7 +62,6 @@
                             <p class="text-justify">
                                 <b>
                                         ${news.title}
-                                        <%--<bean:write name="news" property="title"/>--%>
                                 </b>
                             </p>
                         </div>
@@ -85,14 +94,12 @@
                                             <%--</html:link>--%>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-5 col-lg-5">
-                                        <spring:message code="news.action.edit" />
                                             <%--<html:link action="/news?method=showEditNews&id=${news.id}">--%>
                                             <%--<bean:message key="news.action.edit"/>--%>
                                             <%--</html:link>--%>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                             <%--<html:multibox property="itemsToDelete" value="${news.id}"/>--%>
-                                                <form:checkbox path="itemsToDelete" value="${news}" />
                                     </div>
                                 </div>
                             </div>
@@ -110,11 +117,12 @@
                             col-xs-offset-9 col-sm-offset-9 col-md-offset-10 col-lg-offset-11">
                     <button type="submit" class="btn btn-danger">
                         <%--<bean:message key="news.action.delete"/>--%>
-                            <spring:message code="news.action.delete" />
                         <%--<spring:message code="news.action.delete"/>--%>
                     </button>
                 </div>
             </div>
-        </form:form>
+        </form>
     </div>
 </div>
+</body>
+</html>

@@ -37,10 +37,11 @@ public class NewsController {
             e.printStackTrace();
         }
         return "homePage";
+//        return "listNews";
     }
 
-    @RequestMapping(value = "delete", method = RequestMethod.GET)
-    public String remoteNews(Model model, @RequestParam(value = "itemsToDelete") String[] itemsToDelete) {
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String remoteNews(Model model, @RequestParam(value = "itemsToDelete") List<News> newsList) {
 
         return "";
     }

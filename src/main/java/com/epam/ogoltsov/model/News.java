@@ -1,6 +1,5 @@
 package com.epam.ogoltsov.model;
 
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -28,6 +27,14 @@ public class News {
     private Date date;
 
     public News() {
+    }
+
+    public News(News news) {
+        this.id = news.getId();
+        this.title = news.getTitle();
+        this.brief = news.getBrief();
+        this.content = news.getContent();
+        this.date = news.getDate();
     }
 
     public Integer getId() {
