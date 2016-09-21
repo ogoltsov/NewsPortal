@@ -1,7 +1,7 @@
 package com.epam.ogoltsov.action;
 
-
 import com.epam.ogoltsov.model.News;
+import com.epam.ogoltsov.model.NewsList;
 import com.epam.ogoltsov.service.NewsService;
 import com.epam.ogoltsov.service.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +41,8 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String remoteNews(Model model, @RequestParam(value = "itemsToDelete") List<News> newsList) {
-
+    public String remoteNews(Model model, @RequestParam(value = "NewsListWrapper") NewsList newsList) {
+        System.out.println(newsList);
         return "";
     }
-
-
 }

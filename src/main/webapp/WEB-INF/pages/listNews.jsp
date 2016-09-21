@@ -43,7 +43,7 @@
     </ol>
 
     <div class="newsList">
-        <form:form method="post" modelAttribute="itemsToDelete" action="/delete">
+        <form:form method="post" modelAttribute="NewsListWrapper" action="/delete">
             <c:forEach items="${newsList}" var="news">
                 <jsp:useBean id="news" class="com.epam.ogoltsov.model.News"/>
                 <div class="news">
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                             <%--<html:multibox property="itemsToDelete" value="${news.id}"/>--%>
-                                                <form:checkbox path="itemsToDelete" value="${news}" />
+                                                <%--<form:checkbox path="itemsToDelete" value="${news}" />--%>
                                     </div>
                                 </div>
                             </div>
