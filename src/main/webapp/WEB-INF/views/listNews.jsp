@@ -52,9 +52,9 @@
         </li>
     </ol>
 
-    <div class="newsList">
+    <div class="newsToDeleteList">
         <form action="/delete?method=delete">
-            <c:forEach items="${newsList}" var="news">
+            <c:forEach items="${newsToDeleteList}" var="news">
                 <jsp:useBean id="news" class="com.epam.ogoltsov.model.News"/>
                 <div class="news">
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">

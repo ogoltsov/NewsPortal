@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
     div.actions > div {
         display: inline;
@@ -25,7 +25,7 @@
         background: -webkit-linear-gradient(left, #ffffff 0%, #f9f9f9 50%, #ffffff 99%);
         background: linear-gradient(to right, #ffffff 0%, #f9f9f9 50%, #ffffff 99%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
 
     div.errors {
@@ -42,8 +42,8 @@
         </li>
     </ol>
 
-    <div class="newsList">
-        <form:form method="post" modelAttribute="NewsListWrapper" action="/delete">
+    <div class="newsToDeleteList">
+        <form:form method="post" modelAttribute="list" action="/delete">
             <c:forEach items="${newsList}" var="news">
                 <jsp:useBean id="news" class="com.epam.ogoltsov.model.News"/>
                 <div class="news">
@@ -79,20 +79,22 @@
                                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9"></div>
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                        <spring:message code="news.action.view" />
-                                            <%--<html:link action="/news?method=showViewNews&id=${news.id}">--%>
-                                            <%--<bean:message key="news.action.view"/>--%>
-                                            <%--</html:link>--%>
+                                        <a href="<c:url value="/news/view/${news.id}"/>">
+                                            <spring:message code="news.action.view"/>
+                                        </a>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-5 col-lg-5">
-                                        <spring:message code="news.action.edit" />
+                                        <a href="<c:url value="/news/edit/${news.id}"/>">
+                                            <spring:message code="news.action.edit"/>
+                                        </a>
                                             <%--<html:link action="/news?method=showEditNews&id=${news.id}">--%>
                                             <%--<bean:message key="news.action.edit"/>--%>
                                             <%--</html:link>--%>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                                             <%--<html:multibox property="itemsToDelete" value="${news.id}"/>--%>
-                                                <%--<form:checkbox path="itemsToDelete" value="${news}" />--%>
+                                            <%--<form:checkbox path="itemsToDelete" value="${news}" />--%>
+                                        <form:checkbox path="newsList" value="${news.id}"/>
                                     </div>
                                 </div>
                             </div>
@@ -104,14 +106,13 @@
 
             <div class="container deleteButton">
                 <div class="errors">
-                    <%--<html:errors/>--%>
+                        <%--<html:errors/>--%>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-2 col-lg-1
                             col-xs-offset-9 col-sm-offset-9 col-md-offset-10 col-lg-offset-11">
                     <button type="submit" class="btn btn-danger">
-                        <%--<bean:message key="news.action.delete"/>--%>
-                            <spring:message code="news.action.delete" />
-                        <%--<spring:message code="news.action.delete"/>--%>
+                            <%--<bean:message key="news.action.delete"/>--%>
+                        <spring:message code="news.action.delete"/>
                     </button>
                 </div>
             </div>

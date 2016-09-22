@@ -34,13 +34,13 @@
 <style>
     div.workspace {
         padding-top: 10px;
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
     div.header {
-        border: 1px solid red;
+        /*border: 1px solid red;*/
     }
     div.menu{
-        border: 1px solid deeppink;
+        /*border: 1px solid deeppink;*/
     }
 </style>
 <div class="container-fluid">

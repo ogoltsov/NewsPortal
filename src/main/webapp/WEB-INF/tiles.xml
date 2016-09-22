@@ -7,15 +7,26 @@
     <!-- Base Define -->
     <definition name="base.definition"
                 template="/WEB-INF/pages/tiles/common-layout.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/pages/tiles/header.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/pages/tiles/menu.jsp" />
-        <put-attribute name="body" value="" />
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/WEB-INF/pages/tiles/header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/pages/tiles/menu.jsp"/>
+        <put-attribute name="body" value=""/>
     </definition>
 
     <!-- Home Page - List of All News -->
     <definition name="homePage" extends="base.definition">
-        <put-attribute name="title" value="Home Page" />
-        <put-attribute name="body" value="/WEB-INF/pages/listNews.jsp" />
+        <put-attribute name="title" value="Home Page"/>
+        <put-attribute name="body" value="/WEB-INF/pages/listNews.jsp"/>
     </definition>
+
+    <definition name="editNews" extends="base.definition">
+        <put-attribute name="title" value="Edit News Page"/>
+        <put-attribute name="body" value="/WEB-INF/pages/editNews.jsp"/>
+    </definition>
+
+    <definition name="viewNews" extends="base.definition">
+        <put-attribute name="title" value="View News Page"/>
+        <put-attribute name="body" value="/WEB-INF/pages/viewNews.jsp"/>
+    </definition>
+
 </tiles-definitions>

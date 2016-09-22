@@ -3,19 +3,20 @@ package com.epam.ogoltsov.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsList {
+public class NewsToDeleteList {
 
-    private List<News> newsList;
 
-    public NewsList() {
+    private List<Integer> newsList;
+
+    public NewsToDeleteList() {
         this.newsList = new ArrayList<>();
     }
 
-    public List<News> getNewsList() {
+    public List<Integer> getNewsList() {
         return newsList;
     }
 
-    public void setNewsList(List<News> newsList) {
+    public void setNewsList(List<Integer> newsList) {
         this.newsList = newsList;
     }
 }
