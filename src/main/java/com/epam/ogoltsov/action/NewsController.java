@@ -60,7 +60,7 @@ public class NewsController {
 
     @RequestMapping(value = "/news/edit/{id}")
     public String editNews(Model mode, @PathVariable(value = "id") Integer id){
-        System.out.println(id);
+            System.out.println(id);
         return "editNews";
     }
 
