@@ -73,7 +73,6 @@ public class NewsController {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-
         return "viewNews";
     }
 

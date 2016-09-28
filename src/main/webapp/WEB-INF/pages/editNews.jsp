@@ -20,14 +20,9 @@
         color: red;
     }
 </style>
-<form:form action="/news?method=editNews">
+<form:form action="/news?method=editNews" commandName="news">
     <%--<html:hidden name="newsForm" property="id" value="${news1.id}"/>--%>
-
-
-
-
-
-
+    <form:input path="title" cssClass="form-control" id="InputTitle"  />
     <div class="row">
         <div class="container">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4
